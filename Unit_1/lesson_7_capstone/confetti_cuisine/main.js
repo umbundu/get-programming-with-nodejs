@@ -57,8 +57,8 @@ router.get('/confetti_cuisine.js', (req, res) => {
 
 // File Loading
 let getFile = (file, res) => {
-  fs.readFile(`./${file}`, (errors, data) => {
-    if (errors) {
+  fs.readFile(`./${file}`, (error, data) => {
+    if (error) {
       res.writeHead(500, {"Content-Type": "text/plain"});
       res.end("Internal Error");
     }

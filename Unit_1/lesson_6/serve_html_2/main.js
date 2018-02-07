@@ -26,8 +26,8 @@ http.createServer((req,res) => {
 console.log("Server running at http://localhost:3000");
 
 function customReadFile(file_path, res){
-  fs.readFile(file_path, (errors, data) =>{
-    if (errors) console.log(errors);
+  fs.readFile(file_path, (error, data) =>{
+    if (error) console.log(error);
     res.write(data);
     res.end();
   }); }

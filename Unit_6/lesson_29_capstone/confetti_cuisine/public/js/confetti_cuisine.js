@@ -21,7 +21,6 @@ $(document).ready(()=>{
 
     function addJoinButtonListener() {
       $(".join-button").click((e)=>{
-        console.log("count")
         let button = $(e.target),
         courseId = button.data('id');
         $.get(`/api/courses/${courseId}/join`, (data) => {

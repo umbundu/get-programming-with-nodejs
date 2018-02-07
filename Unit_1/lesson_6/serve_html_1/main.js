@@ -4,7 +4,7 @@ const http = require('http'),
   fs = require('fs');
 
 http.createServer( (req, res) => {
-  fs.readFile(`views${req.url}.html`, (error, data) => {
+  fs.readFile(`views${req.url}`, (error, data) => {
     if (error) {
       res.writeHead(404);
       res.write("FILE NOT FOUND");
