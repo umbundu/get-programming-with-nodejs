@@ -1,6 +1,6 @@
-= Unit 0 Code Readme
+# Unit 0 Code Readme
 
-Code in this folder references examples in Unit 0:
+Code in this folder references examples in Unit 0.
 
 .  
 |____ [`lesson_2`](./Unit_0/lesson_2/)  
