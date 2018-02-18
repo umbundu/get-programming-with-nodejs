@@ -3,7 +3,7 @@
 Code in this folder references examples in Unit 2.  
 
 .  
-|____ [`lesson_8`](./Unit_2/lesson_8/)  
+|____ [`lesson_8`](./lesson_8/)  
 | &nbsp; |____ first_express_project_0  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
@@ -11,7 +11,7 @@ Code in this folder references examples in Unit 2.
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
 |____ readme.adoc  
-|____ [`lesson_9`](./Unit_2/lesson_9/)  
+|____ [`lesson_9`](./lesson_9/)  
 | &nbsp; |____ express_routes_1  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
@@ -31,7 +31,7 @@ Code in this folder references examples in Unit 2.
 | &nbsp; | &nbsp; |____ package.json  
 | &nbsp; | &nbsp; |____ controllers  
 | &nbsp; | &nbsp; | &nbsp; |____ homeController.js  
-|____ [`lesson_10`](./Unit_2/lesson_10/)  
+|____ [`lesson_10`](./lesson_10/)  
 | &nbsp; |____ express_templates  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
@@ -42,7 +42,7 @@ Code in this folder references examples in Unit 2.
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ partials  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ navigation.ejs  
-|____ [`lesson_11`](./Unit_2/lesson_11/)  
+|____ [`lesson_11`](./lesson_11/)  
 | &nbsp; |____ express_templates  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ public  
@@ -56,7 +56,7 @@ Code in this folder references examples in Unit 2.
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ partials  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ navigation.ejs  
-|____ [`lesson_12_capstone`](./Unit_2/lesson_12_capstone/)  
+|____ [`lesson_12_capstone`](./lesson_12_capstone/)  
 |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ public  

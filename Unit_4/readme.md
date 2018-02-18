@@ -3,7 +3,7 @@
 Code in this folder references examples in Unit 4.
 
 .  
-|____ [`lesson_17`](./Unit_4/lesson_17/)  
+|____ [`lesson_17`](./lesson_17/)  
 | &nbsp; |____ recipe_app_crud  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -33,7 +33,7 @@ Code in this folder references examples in Unit 4.
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ subscribers.ejs  
 | &nbsp; |____ mongooseREPL.js  
-|____ [`lesson_18`](./Unit_4/lesson_18/)  
+|____ [`lesson_18`](./lesson_18/)  
 | &nbsp; |____ recipe_app_crud  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -101,7 +101,7 @@ Code in this folder references examples in Unit 4.
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ index.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ subscribers  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ index.ejs  
-|____ [`lesson_19`](./Unit_4/lesson_19/)  
+|____ [`lesson_19`](./lesson_19/)  
 | &nbsp; |____ recipe_app_crud_read  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -183,7 +183,7 @@ Code in this folder references examples in Unit 4.
 | &nbsp; | &nbsp; | &nbsp; |____ subscribers  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ index.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ new.ejs  
-|____ [`lesson_20`](./Unit_4/lesson_20/)  
+|____ [`lesson_20`](./lesson_20/)  
 | &nbsp; |____ recipe_app_crud_delete  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -274,7 +274,7 @@ Code in this folder references examples in Unit 4.
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ show.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ new.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ edit.ejs  
-|____ [`lesson_21_capstone`](./Unit_4/lesson_21_capstone/)  
+|____ [`lesson_21_capstone`](./lesson_21_capstone/)  
 | &nbsp; |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  

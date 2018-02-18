@@ -3,18 +3,18 @@
 Code in this folder references examples in Unit 1.
 
 .  
-|____ [`lesson_3`](./Unit_0/lesson_3/)  
+|____ [`lesson_3`](./lesson_3/)  
 | &nbsp; |____ recipe_connection  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
 | &nbsp; |____ modules  
 | &nbsp; | &nbsp; |____ printMessages.js  
 | &nbsp; | &nbsp; |____ messages.js  
-|____ [`lesson_4`](./Unit_0/lesson_4/)  
+|____ [`lesson_4`](./lesson_4/)  
 | &nbsp; |____ simple_server  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
-|____ [`lesson_5`](./Unit_0/lesson_5/)  
+|____ [`lesson_5`](./lesson_5/)  
 | &nbsp; |____ second_server_3  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
@@ -27,7 +27,7 @@ Code in this folder references examples in Unit 1.
 | &nbsp; |____ simple_routes  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ package.json  
-|____ [`lesson_6`](./Unit_0/lesson_6/)  
+|____ [`lesson_6`](./lesson_6/)  
 | &nbsp; |____ serve_html_2  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ public  
@@ -53,7 +53,7 @@ Code in this folder references examples in Unit 1.
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ views  
 | &nbsp; | &nbsp; | &nbsp; |____ index.html  
-|____ [`lesson_7_capstone`](./Unit_0/lesson_7_capstone/)  
+|____ [`lesson_7_capstone`](./lesson_7_capstone/)  
 | &nbsp; |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ router.js  

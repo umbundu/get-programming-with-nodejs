@@ -1,7 +1,7 @@
 # Unit 6 Code Readme  
 
 .  
-|____ [`lesson_26`](./Unit_6/lesson_26/)  
+|____ [`lesson_26`](./lesson_26/)  
 | &nbsp; |____ recipe_app_adding_api  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriber.js`  
@@ -58,7 +58,7 @@
 | &nbsp; | &nbsp; | &nbsp; |____ `courseRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `homeRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriberRoutes.js`  
-|____ [`lesson_27`](./Unit_6/lesson_27/)  
+|____ [`lesson_27`](./lesson_27/)  
 | &nbsp; |____ recipe_app_accessing_api  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriber.js`  
@@ -116,7 +116,7 @@
 | &nbsp; | &nbsp; | &nbsp; |____ `homeRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `apiRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriberRoutes.js`  
-|____ [`lesson_28`](./Unit_6/lesson_28/)  
+|____ [`lesson_28`](./lesson_28/)  
 | &nbsp; |____ recipe_app_securing_api_2  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriber.js`  
@@ -288,7 +288,7 @@
 | &nbsp; | &nbsp; | &nbsp; |____ `homeRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `apiRoutes.js`  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriberRoutes.js`  
-|____ [`lesson_29_capstone`](./Unit_6/lesson_29_capstone/)    
+|____ [`lesson_29_capstone`](./lesson_29_capstone/)    
 | &nbsp; |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ `subscriber.js`  

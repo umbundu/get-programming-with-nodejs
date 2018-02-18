@@ -3,7 +3,7 @@
 Code in this folder references examples in Unit 5.
 
 .  
-|____ [`lesson_22`](./Unit_5/lesson_22/)  
+|____ [`lesson_22`](./lesson_22/)  
 | &nbsp; |____ recipe_app_sessions  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -49,7 +49,7 @@ Code in this folder references examples in Unit 5.
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ show.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ new.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ edit.ejs  
-|____ [`lesson_23`](./Unit_5/lesson_23/)  
+|____ [`lesson_23`](./lesson_23/)  
 | &nbsp; |____ recipe_app_encryption  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -188,7 +188,7 @@ Code in this folder references examples in Unit 5.
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ show.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ new.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ edit.ejs  
-|____ [`lesson_24`](./Unit_5/lesson_24/)    
+|____ [`lesson_24`](./lesson_24/)    
 | &nbsp; |____ recipe_app_passport  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -235,7 +235,7 @@ Code in this folder references examples in Unit 5.
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ show.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ new.ejs  
 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |____ edit.ejs  
-|____ [`lesson_25_capstone`](./Unit_5/lesson_25_capstone/)    
+|____ [`lesson_25_capstone`](./lesson_25_capstone/)    
 | &nbsp; |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  

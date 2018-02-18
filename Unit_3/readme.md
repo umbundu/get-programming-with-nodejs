@@ -3,7 +3,7 @@
 Code in this folder references examples in Unit 3.  
 
 .  
-|____ [`lesson_13`](./Unit_3/lesson_13/)  
+|____ [`lesson_13`](./lesson_13/)  
 | &nbsp; |____ recipe_app  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ public  
@@ -26,7 +26,7 @@ Code in this folder references examples in Unit 3.
 | &nbsp; | &nbsp; | &nbsp; |____ courses.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ contact.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
-|____ [`lesson_14`](./Unit_3/lesson_14/)  
+|____ [`lesson_14`](./lesson_14/)  
 | &nbsp; |____ recipe_app_schema  
 | &nbsp; | &nbsp; |____ main.js  
 | &nbsp; | &nbsp; |____ public  
@@ -95,7 +95,7 @@ Code in this folder references examples in Unit 3.
 | &nbsp; | &nbsp; | &nbsp; |____ courses.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ contact.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
-|____ [`lesson_15`](./Unit_3/lesson_15/)  
+|____ [`lesson_15`](./lesson_15/)  
 | &nbsp; |____ recipe_app_subscribers_2  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
@@ -201,7 +201,7 @@ Code in this folder references examples in Unit 3.
 | &nbsp; | &nbsp; | &nbsp; |____ contact.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ layout.ejs  
 | &nbsp; | &nbsp; | &nbsp; |____ subscribers.ejs  
-|____ [`lesson_16_capstone`](./Unit_3/lesson_16_capstone/)  
+|____ [`lesson_16_capstone`](./lesson_16_capstone/)  
 | &nbsp; |____ confetti_cuisine  
 | &nbsp; | &nbsp; |____ models  
 | &nbsp; | &nbsp; | &nbsp; |____ subscriber.js  
