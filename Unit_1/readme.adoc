@@ -1,3 +1,0 @@
-= Unit 1 Code Readme
-
-Code in this folder references examples in Unit 1
