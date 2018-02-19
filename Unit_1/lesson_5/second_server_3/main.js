@@ -1,6 +1,5 @@
 'use strict';
 
-// This method given an object, returns a nicely formatted JSON string representation.
 let getJSONString = (obj) => {
   return JSON.stringify(obj, null, 2);
 }
@@ -29,7 +28,8 @@ app.on('request', (req, res) => {
     "Content-Type": "text/html"
   });
 
-  res.end("<h1>This will show on the screen.</h1>");
+	let responseMessage = "<h1>This will show on the screen.</h1>";
+	res.end(responseMessage);
 });
 
 app.listen(port);

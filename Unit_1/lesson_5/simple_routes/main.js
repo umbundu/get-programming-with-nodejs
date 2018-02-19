@@ -1,7 +1,5 @@
 'use strict';
 
-// This serves as the dictionary of all responses.
-// URL is the key and the sample HTML response in the value.
 const routeResponseMap = {
   '/info': '<h1>Info Page</h1>',
   '/contact': '<h1>Contact Us</h1>',
