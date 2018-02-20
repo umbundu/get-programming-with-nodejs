@@ -1,8 +1,7 @@
 const fs = require('fs'),
-httpStatus = require('http-status-codes');
+	httpStatus = require('http-status-codes');
 
 module.exports = {
-    // File Loading
     getFile: (file, res) => {
         fs.readFile(`./${file}`, (errors, data) => {
             if (errors) {

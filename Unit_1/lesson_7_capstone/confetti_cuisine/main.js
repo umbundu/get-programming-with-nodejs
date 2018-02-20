@@ -8,7 +8,6 @@ const port = 3000,
   contentTypes = require('./content-types'),
   utils = require('./utils');
 
-// VIEWS
 router.get('/', (req, res) => {
   res.writeHead(httpStatus.OK, contentTypes.html);
   utils.getFile('views/index.html', res);
@@ -26,10 +25,9 @@ router.get('/contact.html', (req, res) => {
 
 router.post('/', (req, res) => {
   res.writeHead(httpStatus.OK, contentTypes.html);
-  utils.getFile('views/thankyou.html', res);
+  utils.getFile('views/thanks.html', res);
 });
 
-// ASSETS
 router.get('/graph.png', (req, res) => {
   res.writeHead(httpStatus.OK, contentTypes.png);
   utils.getFile('public/images/graph.png', res);
@@ -55,6 +53,5 @@ router.get('/confetti_cuisine.js', (req, res) => {
   utils.getFile('public/js/confetti_cuisine.js', res);
 });
 
-// START SERVER
 http.createServer(router.handle).listen(port);
 console.log(`The server has started and is listening on port number: ${port}`);
