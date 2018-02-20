@@ -1,13 +1,13 @@
 'use strict';
 
-let getJSONString = (obj) => {
-  return JSON.stringify(obj, null, 2);
-}
-
 const port = 3000,
   http = require('http'),
   httpStatus = require('http-status-codes'),
   app = http.createServer();
+
+const getJSONString = (obj) => {
+  return JSON.stringify(obj, null, 2);
+}
 
 app.on('request', (req, res) => {
   console.log(`Method: ${getJSONString(req.method)}`);

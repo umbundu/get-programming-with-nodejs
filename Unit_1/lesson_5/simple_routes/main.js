@@ -23,7 +23,7 @@ const port = 3000,
         res.end('<h1>Welcome!</h1>');
       }, 2000);
     }
-  }).listen(port);
+  });
 
 app.listen(port);
 console.log(`The server has started and is listening on port number: ${port}`);

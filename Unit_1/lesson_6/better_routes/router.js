@@ -1,10 +1,11 @@
 'use strict';
+
 const httpStatus = require('http-status-codes'),
   htmlContentType = {
     "Content-Type": "text/html"
   };
 
-let routes = {
+const routes = {
   'GET': {
     '/index.html': (req, res) => {
       res.writeHead(httpStatus.OK, {

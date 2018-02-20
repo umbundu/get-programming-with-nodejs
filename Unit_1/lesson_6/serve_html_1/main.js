@@ -5,8 +5,7 @@ const port = 3000,
   fs = require('fs'),
   httpStatus = require('http-status-codes');
 
-// The routeMap is now changed to getViewUrl method.
-let getViewUrl = (url) => {
+const getViewUrl = (url) => {
   return `views${url}.html`;
 };
 
