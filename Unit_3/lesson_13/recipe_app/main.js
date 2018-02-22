@@ -7,8 +7,8 @@ const express = require('express'),
   errorController = require('./controllers/errorController'),
   bodyParser = require('body-parser'),
   MongoDB = require('mongodb').MongoClient,
-	dbURL = 'mongodb://localhost:27017',
-	dbName = 'recipe_db';
+  dbURL = 'mongodb://localhost:27017',
+  dbName = 'recipe_db';
 
 MongoDB.connect(dbURL, (error, client) => {
   if (error) throw err;
