@@ -6,7 +6,7 @@ exports.getAllSubscribers = (req, res) => {
   Subscriber.find({}, (error, subscribers) => {
     return new Promise((resolve, reject) => {
       if (error) reject(error);
-      resolve(subscribers)
+      resolve(subscribers);
     });
   }).then((subscribers) => {
     res.render('subscribers', {
@@ -33,6 +33,6 @@ exports.saveSubscriber = (req, res) => {
 
   newSubscriber.save((error, result) => {
     if (error) res.send(error);
-    res.send("Thank you for signing up!");
+    res.send('Thank you for signing up!');
   });
 };

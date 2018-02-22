@@ -1,4 +1,4 @@
-'use strict;'
+'use strict';
 
 const Subscriber = require('../models/subscriber');
 
@@ -20,8 +20,8 @@ exports.getSubscriptionPage = (req, res) => {
 exports.saveSubscriber = (req, res) => {
   let newSubscriber = new Subscriber({name: req.body.name, email: req.body.email, zipCode: req.body.zipCode});
 
-  newSubscriber.save().then(result => {
-    res.send("Thank you for signing up!");
+  newSubscriber.save().then(() => {
+    res.send('Thank you for signing up!');
   }).catch(error => {
     res.send(error);
   });

@@ -24,6 +24,6 @@ exports.saveSubscriber = (req, res) => {
 
   newSubscriber.save((error, result) => {
     if (error) res.send(error);
-    res.send("Thank you for signing up!");
+    res.send('Thank you for signing up!');
   });
 };

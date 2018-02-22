@@ -13,8 +13,8 @@ mongoose.connect('mongodb://localhost/recipe_db');
 const db = mongoose.connection;
 
 var subscriber1 = new Subscriber({
-  name: "Jon Wexler",
-  email: "jon@jonwexler.com"
+  name: 'Jon Wexler',
+  email: 'jon@jonwexler.com'
 });
 
 subscriber1.save((error, savedDocument, next) => {
@@ -23,7 +23,7 @@ subscriber1.save((error, savedDocument, next) => {
 });
 
 var myQuery = Subscriber.findOne({
-  name: "Jon Wexler"
+  name: 'Jon Wexler'
 }).where('email', /wexler/);
 
 myQuery.exec((error, data) => {
@@ -31,7 +31,7 @@ myQuery.exec((error, data) => {
 });
 
 db.once('open', () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
+  console.log('Successfully connected to MongoDB using Mongoose!');
 });
 
 app.set('port', process.env.PORT || 3000);

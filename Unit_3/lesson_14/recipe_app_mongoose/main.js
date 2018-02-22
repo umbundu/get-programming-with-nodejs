@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost/recipe_db');
 var db = mongoose.connection;
 
 db.once('open', () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
+  console.log('Successfully connected to MongoDB using Mongoose!');
 });
 
 app.set('port', process.env.PORT || 3000);
@@ -22,7 +22,7 @@ app.use(layouts);
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
-	extended: false
+  extended: false
 }));
 app.use(bodyParser.json());
 
@@ -30,9 +30,9 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/courses', homeController.showCourses );
-app.get('/contact', homeController.showSignUp );
-app.post('/sign-up',homeController.postedSignUpForm );
+app.get('/courses', homeController.showCourses);
+app.get('/contact', homeController.showSignUp);
+app.post('/sign-up', homeController.postedSignUpForm);
 app.post('/contact', homeController.postedContactForm);
 
 // Error middleware

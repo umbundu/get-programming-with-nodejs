@@ -9,15 +9,13 @@ const express = require('express'),
   subscriberController = require('./controllers/subscribersController'),
 
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
-
-  Subscriber = require('./models/subscriber');
+  mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/recipe_db');
 var db = mongoose.connection;
 
 db.once('open', () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
+  console.log('Successfully connected to MongoDB using Mongoose!');
 });
 
 app.set('port', process.env.PORT || 3000);
@@ -27,7 +25,7 @@ app.use(layouts);
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
-	extended: false
+  extended: false
 }));
 app.use(bodyParser.json());
 
@@ -37,8 +35,8 @@ app.get('/', (req, res) => {
 
 app.get('/subscribers', subscriberController.getAllSubscribers);
 
-app.get('/courses', homeController.showCourses );
-app.get('/contact', homeController.showSignUp );
+app.get('/courses', homeController.showCourses);
+app.get('/contact', homeController.showSignUp);
 app.post('/contact', homeController.postedContactForm);
 
 app.use(errorController.pageNotFoundError);

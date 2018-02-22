@@ -18,8 +18,8 @@ const db = mongoose.connection,
   Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
 var subscriber1 = new Subscriber({
-  name: "Jon Wexler",
-  email: "jon@jonwexler.com"
+  name: 'Jon Wexler',
+  email: 'jon@jonwexler.com'
 });
 
 subscriber1.save((error, savedDocument, next) => {
@@ -28,7 +28,7 @@ subscriber1.save((error, savedDocument, next) => {
 });
 
 db.once('open', () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
+  console.log('Successfully connected to MongoDB using Mongoose!');
 });
 
 app.set('port', process.env.PORT || 3000);
