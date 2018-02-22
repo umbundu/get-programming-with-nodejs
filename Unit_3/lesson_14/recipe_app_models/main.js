@@ -10,12 +10,13 @@ const express = require('express'),
   Subscriber = require('./models/subscriber');
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
-let subscriber1 = new Subscriber({
+var subscriber1 = new Subscriber({
   name: "Jon Wexler",
   email: "jon@jonwexler.com"
 });
+
 subscriber1.save((error, savedDocument, next) => {
   if (error) next(error);
   console.log(savedDocument);
@@ -24,6 +25,7 @@ subscriber1.save((error, savedDocument, next) => {
 var myQuery = Subscriber.findOne({
   name: "Jon Wexler"
 }).where('email', /wexler/);
+
 myQuery.exec((error, data) => {
   if (data) console.log(data.name);
 });

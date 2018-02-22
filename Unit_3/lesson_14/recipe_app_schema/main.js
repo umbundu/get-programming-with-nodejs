@@ -9,20 +9,19 @@ const express = require('express'),
   mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
+const db = mongoose.connection,
+  subscriberSchema = mongoose.Schema({
+    name: String,
+    email: String,
+    zipCode: Number
+  }),
+  Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
-var subscriberSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  zipCode: Number
-});
-
-var Subscriber = mongoose.model('Subscriber', subscriberSchema);
-
-let subscriber1 = new Subscriber({
+var subscriber1 = new Subscriber({
   name: "Jon Wexler",
   email: "jon@jonwexler.com"
 });
+
 subscriber1.save((error, savedDocument, next) => {
   if (error) next(error);
   console.log(savedDocument);

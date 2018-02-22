@@ -1,12 +1,23 @@
 'use strict';
 
-exports.pageNotFoundError = (req, res) => {
-  res.status(404);
-  res.send('404 | The course or recipe  you are looking for may not exist!');
+const httpStatus = require('http-status-codes');
+
+exports.logErrors = (error, req, res, next) => {
+  console.error(error.stack);
+  next(error);
 };
 
-exports.internalServerError = (errors, req, res, next) => {
-  console.log(`ERROR occurred: ${errors.stack}`)
-  res.status(500);
-  res.send('500 | Sorry, our application is taking a nap!');
+exports.respondNoResourceFound = (req, res) => {
+  let errorCode = httpStatus.NOT_FOUND;
+  res.status(errorCode);
+  res.sendFile(`./public/${errorCode}.html`, {
+    root: './'
+  });
+};
+
+exports.respondInternalError = (error, req, res, next) => {
+  let errorCode = httpStatus.INTERNAL_SERVER_ERROR;
+  console.log(`ERROR occurred: ${error.stack}`)
+  res.status(errorCode);
+  res.send(`${errorCode} | Sorry, our application is experiencing a problem!`);
 };

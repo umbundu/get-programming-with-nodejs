@@ -44,10 +44,8 @@ app.get('/', (req, res) => {
 
 app.get('/courses', homeController.showCourses);
 app.get('/contact', homeController.showSignUp);
-app.post('/sign-up', homeController.postedSignUpForm);
 app.post('/contact', homeController.postedContactForm);
 
-// Error middleware
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 
