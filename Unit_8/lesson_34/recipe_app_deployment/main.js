@@ -48,9 +48,11 @@ app.use(layouts);
 
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 app.use(bodyParser.json());
 
 app.use(expressValidator());

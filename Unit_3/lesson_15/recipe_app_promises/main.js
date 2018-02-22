@@ -18,7 +18,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/recipe_db');
 var db = mongoose.connection;
 
-// TODO: Have a separate module seed.js and move this code there! 
+// TODO: Have a separate module seed.js and move this code there!
 // You can include all the dummy data in seed.js and initialize the database using the seed module.
 // let subscriber1  = new Subscriber({name: "Jon Wexler", email: "jon@jonwexler.com"});
 // subscriber1.save((error, savedDocument, next) =>{
@@ -41,7 +41,7 @@ app.set('port', process.env.PORT || 3000);
 
 app.set('view engine', 'ejs');
 app.use(layouts);
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -58,7 +58,6 @@ app.post('/subscribe', subscribersController.saveSubscriber);
 
 app.get('/courses', homeController.showCourses);
 app.get('/contact', homeController.showSignUp);
-app.post('/sign-up', homeController.postedSignUpForm);
 app.post('/contact', homeController.postedContactForm);
 
 // Error middleware

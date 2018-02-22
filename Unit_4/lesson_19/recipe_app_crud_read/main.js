@@ -27,7 +27,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(layouts);
 
-router.use(express.static(`${__dirname}/public`));
+router.use(express.static('public'));
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());

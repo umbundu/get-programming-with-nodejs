@@ -34,7 +34,7 @@ router.use(methodOverride('_method', {
   methods: ['POST', 'GET']
 }));
 
-router.use(express.static(`${__dirname}/public`));
+router.use(express.static('public'));
 
 router.use(bodyParser.urlencoded({
   extended: false
