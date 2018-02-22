@@ -14,10 +14,10 @@ http.createServer((req, res) => {
   fs.readFile(viewUrl, (error, data) => {
     if (error) {
       res.writeHead(httpStatus.NOT_FOUND);
-      res.write("<h1>FILE NOT FOUND</h1>");
+      res.write('<h1>FILE NOT FOUND</h1>');
     } else {
       res.writeHead(httpStatus.OK, {
-        "Content-Type": "text/html"
+        'Content-Type': 'text/html'
       });
       res.write(data);
     }

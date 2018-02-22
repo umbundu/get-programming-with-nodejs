@@ -10,9 +10,9 @@ const routeMap = {
 };
 
 http.createServer((req, res) => {
-	res.writeHead(httpStatus.OK, {
-		"Content-Type": "text/html"
-	});
+  res.writeHead(httpStatus.OK, {
+    'Content-Type': 'text/html'
+  });
 
   if (routeMap[req.url]) {
     fs.readFile(routeMap[req.url], (error, data) => {
@@ -23,4 +23,3 @@ http.createServer((req, res) => {
     res.end('<h1>Sorry, not found.</h1>');
   }
 }).listen(port);
-se

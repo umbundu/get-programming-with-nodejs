@@ -7,11 +7,11 @@ const port = 3000,
 
 app.on('request', (req, res) => {
   res.writeHead(httpStatus.OK, {
-    "Content-Type": "text/html"
+    'Content-Type': 'text/html'
   });
 
-	let responseMessage = "<h1>This will show on the screen.</h1>";
-	res.end(responseMessage);
+  let responseMessage = '<h1>This will show on the screen.</h1>';
+  res.end(responseMessage);
 });
 
 app.listen(port);

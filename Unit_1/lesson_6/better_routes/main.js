@@ -6,15 +6,15 @@ const port = 3000,
   router = require('./router'),
   fs = require('fs'),
   plainTextContentType = {
-    "Content-Type": "text/plain"
+    'Content-Type': 'text/plain'
   },
   htmlContentType = {
-    "Content-Type": "text/html"
+    'Content-Type': 'text/html'
   };
 
 router.get('/', (req, res) => {
   res.writeHead(httpStatusCodes.OK, plainTextContentType);
-  res.end("INDEX");
+  res.end('INDEX');
 });
 
 router.get('/index.html', (req, res) => {
@@ -24,14 +24,13 @@ router.get('/index.html', (req, res) => {
 
 router.post('/', (req, res) => {
   res.writeHead(httpStatusCodes.OK, plainTextContentType);
-  res.end("POSTED");
+  res.end('POSTED');
 });
 
 function customReadFile(file, res) {
-  let contents = "";
   fs.readFile(`./${file}`, (errors, data) => {
     if (errors) {
-      console.log("Error reading the file...");
+      console.log('Error reading the file...');
     }
     res.end(data);
   });

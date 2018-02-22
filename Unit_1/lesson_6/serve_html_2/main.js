@@ -10,7 +10,7 @@ const sendErrorResponse = (res) => {
   res.writeHead(httpStatus.NOT_FOUND, {
     'Content-Type': 'text/html'
   });
-  res.write("<h1>File Not Found!</h1>");
+  res.write('<h1>File Not Found!</h1>');
   res.end();
 };
 
@@ -37,7 +37,7 @@ http.createServer((req, res) => {
     });
     customReadFile(`./public/images${url}`, res);
   } else {
-		sendErrorResponse(res);
+    sendErrorResponse(res);
   }
 }).listen(port);
 console.log(`The server has started and is listening on port number: ${port}`);
