@@ -11,7 +11,7 @@ app.set('port', process.env.PORT || 3000);
 
 app.set('view engine', 'ejs');
 app.use(layouts);
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
 
 app.get('/courses', homeController.showCourses);
 app.get('/contact', homeController.showSignUp);
-app.post('/sign-up', homeController.postedSignUpForm);
 app.post('/contact', homeController.postedContactForm);
 
 app.use(errorController.pageNotFoundError);

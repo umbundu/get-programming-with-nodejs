@@ -1,12 +1,16 @@
 'use strict';
 
+const httpStatus = require('http-status-codes');
+
 exports.pageNotFoundError = (req, res) => {
-  res.status(404);
-  res.send('404 | The course or recipe  you are looking for may not exist!');
+	let errorCode = httpStatus.NOT_FOUND;
+  res.status(errorCode);
+  res.render('error');
 };
 
 exports.internalServerError = (error, req, res, next) => {
+	let errorCode = httpStatus.INTERNAL_SERVER_ERROR;
   console.log(`ERROR occurred: ${error.stack}`)
-  res.status(500);
-  res.send('500 | Sorry, our application is taking a nap!');
+  res.status(errorCode);
+  res.send(`${errorCode} | Sorry, our application is taking a nap!`);
 };
