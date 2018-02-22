@@ -21,10 +21,6 @@ exports.showSignUp = (req, res) => {
   res.render('contact');
 };
 
-exports.postedSignUpForm = (req, res) => {
-  res.send("Sign up submitted");
-};
-
 exports.postedContactForm = (req, res) => {
   res.render('thanks');
 };
