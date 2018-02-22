@@ -6,11 +6,13 @@ const express = require('express'),
   homeController = require('./controllers/homeController'),
   errorController = require('./controllers/errorController'),
   bodyParser = require('body-parser'),
-  MongoDB = require('mongodb').MongoClient;
+  MongoDB = require('mongodb').MongoClient,
+	dbURL = 'mongodb://localhost:27017',
+	dbName = 'recipe_db';
 
-MongoDB.connect('mongodb://localhost:27017', (error, client) => {
+MongoDB.connect(dbURL, (error, client) => {
   if (error) throw err;
-  let db = client.db('recipe_db');
+  let db = client.db(dbName);
   db.collection('contacts').find().toArray((error, data) => {
     if (error) throw err;
     console.log(data);

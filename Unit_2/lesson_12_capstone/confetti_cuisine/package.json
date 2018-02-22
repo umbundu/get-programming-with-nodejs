@@ -1,7 +1,7 @@
 {
   "name": "confetti_cuisine",
   "version": "1.0.0",
-  "description": "An express app with routes",
+  "description": "An Express.js app with routes",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

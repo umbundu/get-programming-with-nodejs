@@ -5,8 +5,8 @@ exports.pageNotFoundError = (req, res) => {
   res.send('404 | The course or recipe  you are looking for may not exist!');
 };
 
-exports.internalServerError = (errors, req, res, next) => {
-  console.log(`ERROR occurred: ${errors.stack}`)
+exports.internalServerError = (error, req, res, next) => {
+  console.log(`ERROR occurred: ${error.stack}`)
   res.status(500);
   res.send('500 | Sorry, our application is taking a nap!');
 };

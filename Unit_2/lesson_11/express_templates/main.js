@@ -6,7 +6,7 @@ const express = require('express'),
   homeController = require('./controllers/homeController'),
   errorController = require('./controllers/errorController');
 
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 
@@ -16,7 +16,7 @@ app.use(homeController.logRequestPaths);
 app.get('/items/:vegetable', homeController.sendReqParam);
 app.get('/name/:myName', homeController.respondWithName);
 
-// app.use(errorController.logErrors);
+app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);
 app.use(errorController.respondInternalError);
 
