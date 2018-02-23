@@ -33,7 +33,6 @@ app.get('/subscribers', subscribersController.getAllSubscribers);
 app.get('/contact', subscribersController.getSubscriptionPage);
 app.post('/subscribe', subscribersController.saveSubscriber);
 
-app.post('/sign-up', homeController.postedSignUpForm);
 app.post('/contact', homeController.postedContactForm);
 
 // Error middleware
