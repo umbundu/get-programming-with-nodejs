@@ -3,21 +3,19 @@
 const Subscriber = require('../models/subscriber');
 
 exports.getAllSubscribers = (req, res) => {
-  Subscriber.find({}, (error, subscribers) => {
-    return new Promise((resolve, reject) => {
-      if (error) reject(error);
-      resolve(subscribers)
+  Subscriber.find({})
+    .then((subscribers) => {
+      res.render('subscribers', {
+        subscribers: subscribers
+      });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      return [];
+    })
+    .then(() => {
+      console.log('promise complete');
     });
-  }).then((subscribers) => {
-    res.render('subscribers', {
-      subscribers: subscribers
-    });
-  }).catch((error) => {
-    console.log(error.message);
-    return [];
-  }).then(() => {
-    console.log('promise complete');
-  });
 };
 
 exports.getSubscriptionPage = (req, res) => {
@@ -33,6 +31,6 @@ exports.saveSubscriber = (req, res) => {
 
   newSubscriber.save((error, result) => {
     if (error) res.send(error);
-    res.send("Thank you for signing up!");
+    res.send('Thank you for signing up!');
   });
 };
