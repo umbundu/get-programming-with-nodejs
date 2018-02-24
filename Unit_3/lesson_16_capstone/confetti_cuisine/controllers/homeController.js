@@ -22,7 +22,3 @@ exports.showCourses = (req, res) => {
 exports.showSignUp = (req, res) => {
   res.render('contact');
 };
-
-exports.postedContactForm = (req, res) => {
-  res.render('thanks');
-};

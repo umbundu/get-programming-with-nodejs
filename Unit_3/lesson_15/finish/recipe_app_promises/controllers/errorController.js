@@ -10,9 +10,7 @@ exports.logErrors = (error, req, res, next) => {
 exports.pageNotFoundError = (req, res) => {
   let errorCode = httpStatus.NOT_FOUND;
   res.status(errorCode);
-  res.sendFile(`./public/${errorCode}.html`, {
-    root: './'
-  });
+  res.render('error');
 };
 
 exports.internalServerError = (error, req, res, next) => {

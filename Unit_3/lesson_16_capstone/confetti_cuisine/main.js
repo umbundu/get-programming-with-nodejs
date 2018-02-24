@@ -10,7 +10,6 @@ const express = require('express'),
   subscribersController = require('./controllers/subscribersController.js');
 
 mongoose.connect('mongodb://localhost/confetti_cuisine');
-mongoose.connection;
 
 app.set('port', process.env.PORT || 3000);
 
@@ -32,8 +31,6 @@ app.get('/courses', homeController.showCourses);
 app.get('/subscribers', subscribersController.getAllSubscribers);
 app.get('/contact', subscribersController.getSubscriptionPage);
 app.post('/subscribe', subscribersController.saveSubscriber);
-
-app.post('/contact', homeController.postedContactForm);
 
 // Error middleware
 app.use(errorController.pageNotFoundError);
