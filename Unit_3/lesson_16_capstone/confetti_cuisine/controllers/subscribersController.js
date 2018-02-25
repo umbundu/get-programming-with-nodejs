@@ -3,7 +3,7 @@
 const Subscriber = require('../models/subscriber');
 
 exports.getAllSubscribers = (req, res) => {
-  Subscriber.find({})
+  Subscriber.find({}).exec()
     .then((subscribers) => {
       res.render('subscribers', {
         subscribers: subscribers

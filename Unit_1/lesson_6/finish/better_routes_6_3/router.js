@@ -7,11 +7,11 @@ const httpStatus = require('http-status-codes'),
 
 const routes = {
   'GET': {
-    '/index.html': (req, res) => {
+    '/info': (req, res) => {
       res.writeHead(httpStatus.OK, {
         'Content-Type': 'text/plain'
       });
-      res.end('Welcome to the Index Page!');
+      res.end('Welcome to the Info Page!');
     }
   },
   'POST': {}

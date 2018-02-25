@@ -24,4 +24,5 @@ http.createServer((req, res) => {
     res.end();
   });
 }).listen(port);
+
 console.log(`The server has started and is listening on port number: ${port}`);
