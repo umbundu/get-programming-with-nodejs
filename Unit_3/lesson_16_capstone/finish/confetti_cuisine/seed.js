@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose'),
   Subscriber = require('./models/subscriber');
 
@@ -20,9 +22,10 @@ var contacts = [{
   zipCode: 19103
 }];
 
-Subscriber.remove({}, () => {
-  console.log('Subscriber data is empty!');
-});
+Subscriber.remove({}).exec()
+  .then( () => {
+    console.log('Subscriber data is empty!');
+  });
 
 var commands = [];
 
@@ -33,7 +36,11 @@ contacts.forEach((c) => {
   }));
 });
 
-Promise.all(commands).then((r) => {
-  console.log(JSON.stringify(r));
-  mongoose.connection.close();
-});
+Promise.all(commands)
+  .then( r => {
+    console.log(JSON.stringify(r));
+    mongoose.connection.close();
+  })
+  .catch( error => {
+    console.log(`ERROR: ${error}`);
+  });

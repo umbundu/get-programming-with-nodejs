@@ -19,7 +19,7 @@ exports.getAllSubscribers = (req, res) => {
 };
 
 exports.getSubscriptionPage = (req, res) => {
-  res.render('subscribe');
+  res.render('contact');
 };
 
 exports.saveSubscriber = (req, res) => {
@@ -29,8 +29,9 @@ exports.saveSubscriber = (req, res) => {
     zipCode: req.body.zipCode
   });
 
-  newSubscriber.save((error, result) => {
+  newSubscriber.save().then( result => {
+    res.render('thanks');
+  }).catch( error =>{
     if (error) res.send(error);
-    res.send('Thank you for signing up!');
   });
 };

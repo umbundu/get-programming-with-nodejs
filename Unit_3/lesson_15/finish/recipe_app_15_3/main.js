@@ -16,15 +16,7 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
-
-// TODO: Have a separate module seed.js and move this code there!
-// You can include all the dummy data in seed.js and initialize the database using the seed module.
-// let subscriber1  = new Subscriber({name: 'Jon Wexler', email: 'jon@jonwexler.com'});
-// subscriber1.save((error, savedDocument, next) =>{
-//   if (error) next(error);
-//   console.log(savedDocument);
-// });
+const db = mongoose.connection;
 
 var myQuery = Subscriber.findOne({
   name: 'Jon Wexler'
@@ -53,14 +45,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/subscribers', subscribersController.getAllSubscribers);
-app.get('/subscribe', subscribersController.getSubscriptionPage);
+app.get('/contact', subscribersController.getSubscriptionPage);
 app.post('/subscribe', subscribersController.saveSubscriber);
 
 app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
-app.post('/contact', homeController.postedContactForm);
 
-// Error middleware
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 

@@ -12,7 +12,7 @@ const express = require('express'),
   mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.once('open', () => {
   console.log('Successfully connected to MongoDB using Mongoose!');
@@ -33,9 +33,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/subscribers', subscribersController.getAllSubscribers);
-app.get('/subscribe', subscribersController.getSubscriptionPage);
-app.post('/subscribe', subscribersController.saveSubscriber);
+app.get('/subscribers', subscribersController.getAllSubscribers, (req, res, next) => {
+  console.log(req.data);
+  res.send(req.data);
+});
 
 app.get('/courses', homeController.showCourses);
 app.get('/contact', homeController.showSignUp);

@@ -3,19 +3,9 @@
 const express = require('express'),
   layouts = require('express-ejs-layouts'),
   app = express(),
-
   homeController = require('./controllers/homeController'),
   errorController = require('./controllers/errorController'),
-
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
-
-db.once('open', () => {
-  console.log('Successfully connected to MongoDB using Mongoose!');
-});
+  bodyParser = require('body-parser');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -33,8 +23,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
-app.post('/contact', homeController.postedContactForm);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);

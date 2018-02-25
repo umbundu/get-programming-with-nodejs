@@ -32,7 +32,7 @@ exports.saveSubscriber = (req, res) => {
     .then(() => {
       res.render('thanks');
     })
-    .catch(error => {
+    .catch( error => {
       res.send(error);
     });
 };

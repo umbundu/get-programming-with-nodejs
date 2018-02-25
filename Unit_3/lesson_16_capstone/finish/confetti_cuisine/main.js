@@ -32,7 +32,6 @@ app.get('/subscribers', subscribersController.getAllSubscribers);
 app.get('/contact', subscribersController.getSubscriptionPage);
 app.post('/subscribe', subscribersController.saveSubscriber);
 
-// Error middleware
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 

@@ -6,13 +6,13 @@ const express = require('express'),
 
   homeController = require('./controllers/homeController'),
   errorController = require('./controllers/errorController'),
-  subscriberController = require('./controllers/subscribersController'),
+  subscribersController = require('./controllers/subscribersController'),
 
   bodyParser = require('body-parser'),
   mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.once('open', () => {
   console.log('Successfully connected to MongoDB using Mongoose!');
@@ -33,11 +33,11 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/subscribers', subscriberController.getAllSubscribers);
+app.get('/subscribers', subscribersController.getAllSubscribers);
+app.get('/contact', subscribersController.getSubscriptionPage);
+app.post('/subscribe', subscribersController.saveSubscriber);
 
 app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
-app.post('/contact', homeController.postedContactForm);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
