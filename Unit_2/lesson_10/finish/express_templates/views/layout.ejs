@@ -3,13 +3,47 @@
 
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>Recipe App</title>
+	<style media="screen">
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		color: black;
+		text-align: center;
+		font-family: 'open sans';
+	}
+
+	#nav {
+		width: 100%;
+		text-align: center;
+		height: 60px;
+		background-color: #7D498D;
+	}
+
+	#footer {
+		width: 100%;
+		text-align: center;
+		height: 60px;
+		background-color: #9C73A9;
+		position: relative;
+		bottom: 0;
+	}
+	#container{
+		height: 100px;
+	}
+	</style>
 </head>
 
 <body>
+
 	<% include partials/navigation %>
-	<%- body %>
+	<div id="container">
+		<%- body %>
+	</div>
 	<div id="footer">FOOTER</div>
+
+
 </body>
 
 </html>

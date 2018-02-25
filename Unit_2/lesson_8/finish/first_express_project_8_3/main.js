@@ -7,7 +7,7 @@ const port = 3000,
 app.get('/', (req, res) => {
   console.log(req.params);
   console.log(req.body);
-  console.log(req.route);
+  console.log(req.url);
   console.log(req.query);
   res.send('Hello, Universe!');
 }).listen(port, function () {
