@@ -9,12 +9,21 @@ const express = require('express'),
   subscribersController = require('./controllers/subscribersController'),
 
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+
+  Subscriber = require('./models/subscriber');
 
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/recipe_db');
 const db = mongoose.connection;
+
+var myQuery = Subscriber.findOne({
+  name: 'Jon Wexler'
+}).where('email', /wexler/);
+myQuery.exec((error, data) => {
+  if (data) console.log(data.name);
+});
 
 db.once('open', () => {
   console.log('Successfully connected to MongoDB using Mongoose!');
