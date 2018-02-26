@@ -3,28 +3,27 @@
 const Subscriber = require('../models/subscriber');
 
 module.exports = {
+
   getAllSubscribers: (req, res) => {
-    Subscriber.find({}, (error, subscribers) => {
-      return new Promise((resolve, reject) => {
-        if (error) reject(error);
-        resolve(subscribers)
+    Subscriber.find({}).exec()
+      .then((subscribers) => {
+        res.render('subscribers', {
+          subscribers: subscribers
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+        return [];
+      })
+      .then(() => {
+        console.log('promise complete');
       });
-    }).then((subscribers) => {
-      res.render('subscribers', {
-        subscribers: subscribers
-      });
-    }).catch((error) => {
-      console.log(error.message);
-      return [];
-    }).then(() => {
-      console.log('promise complete');
-    });
   },
 
   getSubscriptionPage: (req, res) => {
-    res.render('subscribe');
+    res.render('contact');
   },
-  
+
   saveSubscriber: (req, res) => {
     let newSubscriber = new Subscriber({
       name: req.body.name,
@@ -32,10 +31,10 @@ module.exports = {
       zipCode: req.body.zipCode
     });
 
-    newSubscriber.save((error, result) => {
+    newSubscriber.save().then(result => {
+      res.render('thanks');
+    }).catch(error => {
       if (error) res.send(error);
-      res.send("Thank you for signing up!");
     });
   }
-
 };

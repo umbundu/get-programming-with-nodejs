@@ -16,9 +16,11 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/recipe_db');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
-db.once('open', () => { console.log("Successfully connected to MongoDB using Mongoose!")});
+db.once('open', () => {
+  console.log('Successfully connected to MongoDB using Mongoose!');
+});
 
 app.set('port', process.env.PORT || 3000);
 
@@ -27,7 +29,7 @@ app.use(layouts);
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
-	extended: false
+  extended: false
 }));
 app.use(bodyParser.json());
 
@@ -39,15 +41,12 @@ app.get('/users', usersController.index, usersController.indexView);
 app.get('/subscribers', subscribersController.index, subscribersController.indexView);
 app.get('/courses', coursesController.index, coursesController.indexView);
 
-app.get('/subscribe', subscribersController.getSubscriptionPage);
+app.get('/subscribers', subscribersController.getAllSubscribers);
+app.get('/contact', subscribersController.getSubscriptionPage);
 app.post('/subscribe', subscribersController.saveSubscriber);
 
-app.get('/courses', homeController.showCourses );
-app.get('/contact', homeController.showSignUp );
-app.post('/sign-up',homeController.postedSignUpForm );
-app.post('/contact', homeController.postedContactForm);
+app.get('/courses', homeController.showCourses);
 
-// Error middleware
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 

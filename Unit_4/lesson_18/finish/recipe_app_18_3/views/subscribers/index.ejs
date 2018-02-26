@@ -1,6 +1,19 @@
-<div class="list-items">
-  <% subscribers.forEach(s => {%>
-    <p>Name: <%= s.name %></p>
-    <p>Email: <%= s.email %></p><hr/>
-  <% })%>
-</div>
+<div class="container">
+	<h2>Subscibers Table</h2>
+	 <table class="table">
+	   <thead>
+	     <tr>
+	       <th>Name</th>
+	       <th>Email</th>
+	     </tr>
+	   </thead>
+	   <tbody>
+	     <% subscribers.forEach(subscriber => { %>
+	     <tr>
+	       <td><%= subscriber.name %></td>
+	       <td><%= subscriber.email %></td>
+	     </tr>
+	     <% }); %>
+	   </tbody>
+	 </table>
+ </div>

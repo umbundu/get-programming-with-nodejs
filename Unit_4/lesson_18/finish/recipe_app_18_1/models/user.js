@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
-  Schema = require('mongoose').Schema;
+  {Schema} = mongoose;
 
 var userSchema = new Schema({
   name: {

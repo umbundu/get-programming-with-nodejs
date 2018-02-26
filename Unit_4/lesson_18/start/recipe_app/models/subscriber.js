@@ -1,9 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-  {Schema} = mongoose;
+const mongoose = require('mongoose');
 
-var subscriberSchema = new Schema({
+var subscriberSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -20,7 +19,7 @@ var subscriberSchema = new Schema({
     max: 99999
   },
   courses: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Course'
   }]
 });

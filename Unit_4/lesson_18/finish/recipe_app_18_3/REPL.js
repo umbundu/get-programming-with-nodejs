@@ -1,14 +1,16 @@
 // SETUP
 const mongoose = require('mongoose'),
   Subscriber = require('./models/subscriber'),
-  Course = require('./models/course');
+  Course = require('./models/course'),
+  User = require('./models/user');
 
 var testCourse,
-  testSubscriber;
+  testSubscriber,
+  testUser,
+  targetSubscriber;
 
 mongoose.connect('mongodb://localhost/recipe_db');
 mongoose.Promise = global.Promise;
-
 
 // PROMISE CHAIN
 
@@ -77,4 +79,31 @@ Subscriber.remove({})
     return Subscriber.find({courses: mongoose.Types.ObjectId(testCourse._id)});
   })
   .then(subscriber => console.log(subscriber))
+  .catch(error => console.log(error.message));
+
+User.remove({})
+  .then(() => {
+    return User.create({
+      name: {
+        first: 'Jon',
+        last: 'Wexler '
+      },
+      email: 'jon@jonwexler.com',
+      password: 'pass123'
+    });
+  })
+  .then(user => testUser = user)
+  .then(() => {
+    return Subscriber.findOne({
+      email: testUser.email
+    });
+  })
+  .then(subscriber => {
+    targetSubscriber = subscriber;
+    console.log(subscriber);
+  })
+  .then(() => {
+    testUser.subscribedAccount = targetSubscriber;
+    testUser.save();
+  })
   .catch(error => console.log(error.message));
