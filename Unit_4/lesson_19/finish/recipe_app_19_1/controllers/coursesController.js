@@ -14,7 +14,7 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res, next) => {
+  indexView: (req, res) => {
     res.render('courses/index');
   },
 
@@ -23,10 +23,10 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var courseParams = {
+    let courseParams = {
       title: req.body.title,
       description: req.body.description,
-      items: [req.body.items.split(",")],
+      items: [req.body.items.split(',')],
       zipCode: req.body.zipCode
     };
     Course.create(courseParams)
@@ -36,7 +36,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving course: ${error.message}`)
+        console.log(`Error saving course: ${error.message}`);
         next(error);
       });
   },

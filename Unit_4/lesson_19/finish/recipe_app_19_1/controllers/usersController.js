@@ -14,6 +14,7 @@ module.exports = {
         next(error);
       });
   },
+
   indexView: (req, res) => {
     res.render('users/index');
   },
@@ -23,9 +24,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    console.log(req.body)
-
-    var userParams = {
+    let userParams = {
       name: {
         first: req.body.first,
         last: req.body.last
@@ -41,7 +40,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving user: ${error.message}`)
+        console.log(`Error saving user: ${error.message}`);
         next(error);
       });
   },
@@ -51,5 +50,4 @@ module.exports = {
     if (redirectPath !== undefined) res.redirect(redirectPath);
     else next();
   }
-
 };

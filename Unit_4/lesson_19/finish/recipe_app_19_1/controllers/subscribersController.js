@@ -14,8 +14,23 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res, next) => {
+
+  indexView: (req, res) => {
     res.render('subscribers/index');
+  },
+
+  saveSubscriber: (req, res) => {
+    let newSubscriber = new Subscriber({
+      name: req.body.name,
+      email: req.body.email,
+      zipCode: req.body.zipCode
+    });
+
+    newSubscriber.save().then(result => {
+      res.render('thanks');
+    }).catch(error => {
+      if (error) res.send(error);
+    });
   },
 
   new: (req, res) => {
@@ -23,7 +38,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var subscriberParams = {
+    let subscriberParams = {
       name: req.body.name,
       email: req.body.email,
       zipCode: req.body.zipCode
@@ -35,7 +50,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving subscriber: ${error.message}`)
+        console.log(`Error saving subscriber: ${error.message}`);
         next(error);
       });
   },
@@ -45,4 +60,6 @@ module.exports = {
     if (redirectPath !== undefined) res.redirect(redirectPath);
     else next();
   }
+
+
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
-  Schema = require('mongoose').Schema,
+  {Schema} = mongoose,
   Subscriber = require('./subscriber');
 
 var userSchema = new Schema({
@@ -30,14 +30,14 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  subscribedAccount: {
-    type: Schema.Types.ObjectId,
-    ref: 'Subscriber'
-  },
   courses: [{
     type: Schema.Types.ObjectId,
     ref: 'Course'
   }],
+  subscribedAccount: {
+    type: Schema.Types.ObjectId,
+    ref: 'Subscriber'
+  }
 }, {
   timestamps: true
 });
@@ -47,24 +47,22 @@ userSchema.virtual('fullName').get(function () {
 });
 
 userSchema.pre('save', function (next) {
-  console.log("HERE SAVING");
-  var user = this;
+  let user = this;
   if (user.subscribedAccount === undefined) {
     Subscriber.findOne({
-        email: user.email
-      })
+      email: user.email
+    })
       .then(subscriber => {
         user.subscribedAccount = subscriber;
         next();
       })
-      .catch(e => {
-        console.log(`Error in connecting subscriber: ${e.message}`);
-        next(e);
+      .catch(error => {
+        console.log(`Error in connecting subscriber: ${error.message}`);
+        next(error);
       });
   } else {
     next();
   }
-
 });
 
 module.exports = mongoose.model('User', userSchema);

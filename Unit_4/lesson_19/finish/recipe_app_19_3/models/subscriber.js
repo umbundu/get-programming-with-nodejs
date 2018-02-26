@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  {Schema} = mongoose;
 
 var subscriberSchema = new Schema({
   name: {
@@ -23,8 +23,6 @@ var subscriberSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Course'
   }]
-}, {
-  timestamps: true
 });
 
 subscriberSchema.methods.getInfo = function () {
