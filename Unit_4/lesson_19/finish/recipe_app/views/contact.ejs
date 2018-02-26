@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="col-6">
+    <img src="images/graph.png" alt="">
+  </div>
+  <div class="col-6">
+		<h1>Subscribe here!</h1>
+    <p>Enter your email if you're interested to learn more:</p>
+		<form action="/subscribe" method="post">
+			<label for="name">Name</label>
+		  <input type="text" name="name" placeholder="Name">
+			<label for="email">Email</label>
+		  <input type="email" name="email" placeholder="Email">
+			<label for="zipCode">Zip Code</label>
+		  <input type="text" pattern="[0-9]{5}" name="zipCode" placeholder="Zip Code">
+		  <input class="btn" type="submit" name="submit">
+		</form>
+    <p> We'll get back to you soon!</p>
+  </div>
+</div>
