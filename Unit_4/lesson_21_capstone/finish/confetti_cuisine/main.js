@@ -4,34 +4,34 @@ const express = require('express'),
   layouts = require('express-ejs-layouts'),
   app = express(),
   router = express.Router(),
-  methodOverride = require('method-override'),
 
   homeController = require('./controllers/homeController'),
   errorController = require('./controllers/errorController'),
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
   subscribersController = require('./controllers/subscribersController.js'),
   usersController = require('./controllers/usersController.js'),
-  coursesController = require('./controllers/coursesController.js');
+  coursesController = require('./controllers/coursesController.js'),
+
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  methodOverride = require('method-override');
 
 
 mongoose.connect('mongodb://localhost/confetti_cuisine');
-mongoose.connection;
 
 app.set('port', process.env.PORT || 3000);
-
-app.set('view engine', 'ejs');
-app.use(layouts);
-app.use(express.static('public'));
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-app.use(bodyParser.json());
+app .set('view engine', 'ejs');
 
 router.use(methodOverride('_method', {
   methods: ['POST', 'GET']
 }));
+
+router.use(layouts);
+router.use(express.static('public'));
+
+router.use(bodyParser.urlencoded({
+  extended: false
+}));
+router.use(bodyParser.json());
 
 router.get('/', homeController.index);
 
@@ -58,12 +58,6 @@ router.get('/courses/:id/edit', coursesController.edit);
 router.put('/courses/:id/update', coursesController.update, coursesController.redirectView);
 router.get('/courses/:id', coursesController.show, coursesController.showView);
 router.delete('/courses/:id/delete', coursesController.delete, coursesController.redirectView);
-
-router.get('/contact', subscribersController.new);
-router.post('/subscribe', subscribersController.create, subscribersController.redirectView);
-
-router.post('/sign-up', homeController.postedSignUpForm);
-router.post('/contact', homeController.postedContactForm);
 
 router.use(errorController.pageNotFoundError);
 router.use(errorController.internalServerError);

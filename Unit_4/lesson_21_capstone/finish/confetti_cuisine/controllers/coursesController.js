@@ -1,6 +1,14 @@
 'use strict';
 
-const Course = require('../models/course');
+const Course = require('../models/course'),
+  getCourseParams = (body) => {
+    return {
+      title: body.title,
+      description: body.description,
+      maxStudents: body.maxStudents,
+      cost: body.cost
+    };
+  };
 
 module.exports = {
   index: (req, res, next) => {
@@ -14,7 +22,7 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res, next) => {
+  indexView: (req, res) => {
     res.render('courses/index');
   },
 
@@ -23,7 +31,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var courseParams = getCourseParams(req.body);
+    let courseParams = getCourseParams(req.body);
     Course.create(courseParams)
       .then(course => {
         res.locals.redirect = '/courses';
@@ -31,7 +39,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving course: ${error.message}`)
+        console.log(`Error saving course: ${error.message}`);
         next(error);
       });
   },
@@ -43,14 +51,14 @@ module.exports = {
   },
 
   show: (req, res, next) => {
-    var courseId = req.params.id;
+    let courseId = req.params.id;
     Course.findById(courseId)
       .then(course => {
         res.locals.course = course;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching course by ID: ${error.message}`)
+        console.log(`Error fetching course by ID: ${error.message}`);
         next(error);
       });
   },
@@ -60,7 +68,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var courseId = req.params.id;
+    let courseId = req.params.id;
     Course.findById(courseId)
       .then(course => {
         res.render('courses/edit', {
@@ -74,12 +82,12 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var courseId = req.params.id,
+    let courseId = req.params.id,
       courseParams = getCourseParams(req.body);
 
     Course.findByIdAndUpdate(courseId, {
-        $set: courseParams
-      })
+      $set: courseParams
+    })
       .then(course => {
         res.locals.redirect = `/courses/${courseId}`;
         res.locals.course = course;
@@ -92,9 +100,9 @@ module.exports = {
   },
 
   delete: (req, res, next) => {
-    var courseId = req.params.id;
+    let courseId = req.params.id;
     Course.findByIdAndRemove(courseId)
-      .then(course => {
+      .then(() => {
         res.locals.redirect = '/courses';
         next();
       })
@@ -104,12 +112,3 @@ module.exports = {
       });
   }
 };
-
-function getCourseParams(body) {
-  return {
-    title: body.title,
-    description: body.description,
-    maxStudents: body.maxStudents,
-    cost: body.cost
-  };
-}

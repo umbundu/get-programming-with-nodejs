@@ -1,6 +1,13 @@
 'use strict';
 
-const Subscriber = require('../models/subscriber');
+const Subscriber = require('../models/subscriber'),
+  getSubscriberParams = (body) => {
+    return {
+      name: body.name,
+      email: body.email,
+      zipCode: parseInt(body.zipCode)
+    };
+  };
 
 module.exports = {
   index: (req, res, next) => {
@@ -14,7 +21,7 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res, next) => {
+  indexView: (req, res) => {
     res.render('subscribers/index');
   },
 
@@ -23,7 +30,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var subscriberParams = subscriberParams = getSubscriberParams(req.body);
+    let subscriberParams = subscriberParams = getSubscriberParams(req.body);
     Subscriber.create(subscriberParams)
       .then(subscriber => {
         res.locals.redirect = '/subscribers';
@@ -31,7 +38,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving subscriber: ${error.message}`)
+        console.log(`Error saving subscriber: ${error.message}`);
         next(error);
       });
   },
@@ -42,14 +49,14 @@ module.exports = {
     else next();
   },
   show: (req, res, next) => {
-    var subscriberId = req.params.id;
+    let subscriberId = req.params.id;
     Subscriber.findById(subscriberId)
       .then(subscriber => {
         res.locals.subscriber = subscriber;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching subscriber by ID: ${error.message}`)
+        console.log(`Error fetching subscriber by ID: ${error.message}`);
         next(error);
       });
   },
@@ -59,7 +66,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var subscriberId = req.params.id;
+    let subscriberId = req.params.id;
     Subscriber.findById(subscriberId)
       .then(subscriber => {
         res.render('subscribers/edit', {
@@ -73,16 +80,13 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var subscriberId = req.params.id,
+    let subscriberId = req.params.id,
       subscriberParams = getSubscriberParams(req.body);
 
     Subscriber.findByIdAndUpdate(subscriberId, {
-        $set: subscriberParams
-      })
+      $set: subscriberParams
+    })
       .then(subscriber => {
-        console.log("HERE")
-        console.log(subscriber)
-
         res.locals.redirect = `/subscribers/${subscriberId}`;
         res.locals.subscriber = subscriber;
         next();
@@ -94,9 +98,9 @@ module.exports = {
   },
 
   delete: (req, res, next) => {
-    var subscriberId = req.params.id;
+    let subscriberId = req.params.id;
     Subscriber.findByIdAndRemove(subscriberId)
-      .then(subscriber => {
+      .then(() => {
         res.locals.redirect = '/subscribers';
         next();
       })
@@ -106,11 +110,3 @@ module.exports = {
       });
   }
 };
-
-function getSubscriberParams(body) {
-  return {
-    name: body.name,
-    email: body.email,
-    zipCode: parseInt(body.zipCode)
-  };
-}

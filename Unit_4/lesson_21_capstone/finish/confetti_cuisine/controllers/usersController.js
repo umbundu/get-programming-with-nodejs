@@ -1,6 +1,17 @@
 'use strict';
 
-const User = require('../models/user');
+const User = require('../models/user'),
+  getUserParams = (body) => {
+    return {
+      name: {
+        first: body.first,
+        last: body.last
+      },
+      email: body.email,
+      password: body.password,
+      zipCode: body.zipCode
+    };
+  };
 
 module.exports = {
   index: (req, res, next) => {
@@ -23,7 +34,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var userParams = getUserParams(req.body);
+    let userParams = getUserParams(req.body);
 
     User.create(userParams)
       .then(user => {
@@ -32,7 +43,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving user: ${error.message}`)
+        console.log(`Error saving user: ${error.message}`);
         next(error);
       });
   },
@@ -44,14 +55,14 @@ module.exports = {
   },
 
   show: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.locals.user = user;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching user by ID: ${error.message}`)
+        console.log(`Error fetching user by ID: ${error.message}`);
         next(error);
       });
   },
@@ -61,7 +72,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.render('users/edit', {
@@ -75,12 +86,12 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var userId = req.params.id,
+    let userId = req.params.id,
       userParams = getUserParams(req.body);
 
     User.findByIdAndUpdate(userId, {
-        $set: userParams
-      })
+      $set: userParams
+    })
       .then(user => {
         res.locals.redirect = `/users/${userId}`;
         res.locals.user = user;
@@ -93,9 +104,9 @@ module.exports = {
   },
 
   delete: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findByIdAndRemove(userId)
-      .then(user => {
+      .then(() => {
         res.locals.redirect = '/users';
         next();
       })
@@ -106,15 +117,3 @@ module.exports = {
   }
 
 };
-
-function getUserParams(body) {
-  return {
-    name: {
-      first: body.first,
-      last: body.last
-    },
-    email: body.email,
-    password: body.password,
-    zipCode: body.zipCode
-  };
-}
