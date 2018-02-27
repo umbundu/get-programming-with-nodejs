@@ -14,7 +14,7 @@ module.exports = {
         next(error);
       });
   },
-  indexView: (req, res, next) => {
+  indexView: (req, res) => {
     res.render('courses/index');
   },
 
@@ -23,10 +23,10 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    var courseParams = {
+    let courseParams = {
       title: req.body.title,
       description: req.body.description,
-      items: [req.body.items.split(",")],
+      items: [req.body.items.split(',')],
       zipCode: req.body.zipCode
     };
     Course.create(courseParams)
@@ -36,26 +36,20 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving course: ${error.message}`)
+        console.log(`Error saving course: ${error.message}`);
         next(error);
       });
   },
 
-  redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
-    if (redirectPath !== undefined) res.redirect(redirectPath);
-    else next();
-  },
-
   show: (req, res, next) => {
-    var courseId = req.params.id;
+    let courseId = req.params.id;
     Course.findById(courseId)
       .then(course => {
         res.locals.course = course;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching course by ID: ${error.message}`)
+        console.log(`Error fetching course by ID: ${error.message}`);
         next(error);
       });
   },
@@ -65,7 +59,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var courseId = req.params.id;
+    let courseId = req.params.id;
     Course.findById(courseId)
       .then(course => {
         res.render('courses/edit', {
@@ -79,17 +73,17 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var courseId = req.params.id,
+    let courseId = req.params.id,
       courseParams = {
         title: req.body.title,
         description: req.body.description,
-        items: [req.body.items.split(",")],
+        items: [req.body.items.split(',')],
         zipCode: req.body.zipCode
       };
 
     Course.findByIdAndUpdate(courseId, {
-        $set: courseParams
-      })
+      $set: courseParams
+    })
       .then(course => {
         res.locals.redirect = `/courses/${courseId}`;
         res.locals.course = course;
@@ -99,5 +93,11 @@ module.exports = {
         console.log(`Error updating course by ID: ${error.message}`);
         next(error);
       });
+  },
+
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect;
+    if (redirectPath !== undefined) res.redirect(redirectPath);
+    else next();
   }
 };

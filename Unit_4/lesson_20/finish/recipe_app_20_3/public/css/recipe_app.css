@@ -2,7 +2,7 @@
 
 body{
   margin: 0;
-  padding-top: 150px;
+  padding-top: 80px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #nav{
@@ -64,9 +64,4 @@ input{
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.table{
-  margin: 0 auto;
-  width: 900px;
 }

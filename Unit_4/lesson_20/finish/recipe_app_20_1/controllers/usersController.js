@@ -14,6 +14,7 @@ module.exports = {
         next(error);
       });
   },
+
   indexView: (req, res) => {
     res.render('users/index');
   },
@@ -23,9 +24,7 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-    console.log(req.body)
-
-    var userParams = {
+    let userParams = {
       name: {
         first: req.body.first,
         last: req.body.last
@@ -41,26 +40,20 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving user: ${error.message}`)
+        console.log(`Error saving user: ${error.message}`);
         next(error);
       });
   },
 
-  redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
-    if (redirectPath !== undefined) res.redirect(redirectPath);
-    else next();
-  },
-
   show: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.locals.user = user;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching user by ID: ${error.message}`)
+        console.log(`Error fetching user by ID: ${error.message}`);
         next(error);
       });
   },
@@ -70,7 +63,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.render('users/edit', {
@@ -84,7 +77,7 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var userId = req.params.id,
+    let userId = req.params.id,
       userParams = {
         name: {
           first: req.body.first,
@@ -96,8 +89,8 @@ module.exports = {
       };
 
     User.findByIdAndUpdate(userId, {
-        $set: userParams
-      })
+      $set: userParams
+    })
       .then(user => {
         res.locals.redirect = `/users/${userId}`;
         res.locals.user = user;
@@ -107,6 +100,11 @@ module.exports = {
         console.log(`Error updating user by ID: ${error.message}`);
         next(error);
       });
-  }
+  },
 
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect;
+    if (redirectPath !== undefined) res.redirect(redirectPath);
+    else next();
+  }
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
-  Schema = require('mongoose').Schema;
+  {Schema} = mongoose;
 
 var courseSchema = new Schema({
   title: {
@@ -14,13 +14,11 @@ var courseSchema = new Schema({
     required: true
   },
   items: [],
-  zipCode:  {
+  zipCode: {
     type: Number,
     min: [10000, 'Zip code too short'],
     max: 99999
   }
-},{
-  timestamps: true
 });
 
 module.exports = mongoose.model('Course', courseSchema);
