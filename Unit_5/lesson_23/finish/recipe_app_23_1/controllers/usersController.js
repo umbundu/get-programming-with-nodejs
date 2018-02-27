@@ -1,6 +1,17 @@
 'use strict';
 
-const User = require('../models/user');
+const User = require('../models/user'),
+  getUserParams = (body) => {
+    return {
+      name: {
+        first: body.first,
+        last: body.last
+      },
+      email: body.email,
+      password: body.password,
+      zipCode: body.zipCode
+    };
+  };
 
 module.exports = {
   index: (req, res, next) => {
@@ -14,6 +25,7 @@ module.exports = {
         next(error);
       });
   },
+
   indexView: (req, res) => {
     res.render('users/index');
   },
@@ -23,20 +35,11 @@ module.exports = {
   },
 
   create: (req, res, next) => {
-
-    var userParams = {
-      name: {
-        first: req.body.first,
-        last: req.body.last
-      },
-      email: req.body.email,
-      password: req.body.password,
-      zipCode: req.body.zipCode
-    };
+    let userParams = getUserParams(req.body);
     User.create(userParams)
       .then(user => {
-        res.locals.redirect = '/users';
         req.flash('success', `${user.fullName}'s account created successfully!`);
+        res.locals.redirect = '/users';
         res.locals.user = user;
         next();
       })
@@ -48,21 +51,15 @@ module.exports = {
       });
   },
 
-  redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
-    if (redirectPath !== undefined) res.redirect(redirectPath);
-    else next();
-  },
-
   show: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.locals.user = user;
         next();
       })
       .catch(error => {
-        console.log(`Error fetching user by ID: ${error.message}`)
+        console.log(`Error fetching user by ID: ${error.message}`);
         next(error);
       });
   },
@@ -72,7 +69,7 @@ module.exports = {
   },
 
   edit: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findById(userId)
       .then(user => {
         res.render('users/edit', {
@@ -86,40 +83,28 @@ module.exports = {
   },
 
   update: (req, res, next) => {
-    var userId = req.params.id,
-      userParams = {
-        name: {
-          first: req.body.first,
-          last: req.body.last
-        },
-        email: req.body.email,
-        password: req.body.password,
-        zipCode: req.body.zipCode
-      };
+    let userId = req.params.id,
+      userParams = getUserParams(req.body);
 
     User.findByIdAndUpdate(userId, {
-        $set: userParams
-      })
+      $set: userParams
+    })
       .then(user => {
         res.locals.redirect = `/users/${userId}`;
-        req.flash('success', `${user.fullName}'s account updated successfully!`);
         res.locals.user = user;
         next();
       })
       .catch(error => {
         console.log(`Error updating user by ID: ${error.message}`);
-        req.flash('error', `Failed to update user account because: ${error.message}.`);
-        res.locals.redirect = `/users/${userId}/edit`;
-        next();
+        next(error);
       });
   },
 
   delete: (req, res, next) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
     User.findByIdAndRemove(userId)
-      .then(user => {
+      .then(() => {
         res.locals.redirect = '/users';
-        req.flash('success', `${user.fullName}'s account deleted successfully!`);
         next();
       })
       .catch(error => {
@@ -134,8 +119,8 @@ module.exports = {
 
   authenticate: (req, res, next) => {
     User.findOne({
-        email: req.body.email
-      })
+      email: req.body.email
+    })
       .then(user => {
         if (user.password === req.body.password) {
           res.locals.redirect = `/users/${user._id}`;
@@ -152,6 +137,11 @@ module.exports = {
         console.log(`Error logging in user: ${error.message}`);
         next(error);
       });
-  }
+  },
 
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect;
+    if (redirectPath !== undefined) res.redirect(redirectPath);
+    else next();
+  }
 };

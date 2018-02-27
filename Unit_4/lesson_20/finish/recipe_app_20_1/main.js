@@ -25,9 +25,9 @@ db.once('open', () => {
 });
 
 app.set('port', process.env.PORT || 3000);
-
 app.set('view engine', 'ejs');
-app.use(layouts);
+
+router.use(layouts);
 
 router.use(methodOverride('_method', {
   methods: ['POST', 'GET']

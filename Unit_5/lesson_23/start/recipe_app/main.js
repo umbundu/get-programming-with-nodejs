@@ -29,9 +29,9 @@ db.once('open', () => {
 });
 
 app.set('port', process.env.PORT || 3000);
-
 app.set('view engine', 'ejs');
-app.use(layouts);
+
+router.use(layouts);
 
 router.use(cookieParser('secret_passcode'));
 router.use(expressSession({
