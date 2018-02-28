@@ -1,9 +1,9 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+const mongoose = require( 'mongoose' ),
+  { Schema } = mongoose;
 
-var subscriberSchema = new Schema({
+var subscriberSchema = new Schema( {
   name: {
     type: String,
     required: true
@@ -16,19 +16,19 @@ var subscriberSchema = new Schema({
   },
   zipCode: {
     type: Number,
-    min: [10000, 'Zip code too short'],
+    min: [ 10000, 'Zip code too short' ],
     max: 99999
   },
-  courses: [{
+  courses: [ {
     type: Schema.Types.ObjectId,
     ref: 'Course'
-  }]
+  } ]
 }, {
   timestamps: true
-});
+} );
 
 subscriberSchema.methods.getInfo = function () {
   return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
 };
 
-module.exports = mongoose.model('Subscriber', subscriberSchema);
+module.exports = mongoose.model( 'Subscriber', subscriberSchema );

@@ -30,7 +30,7 @@ module.exports = {
   },
 
   create: ( req, res, next ) => {
-    let subscriberParams = subscriberParams = getSubscriberParams( req.body );
+    let subscriberParams = getSubscriberParams( req.body );
     Subscriber.create( subscriberParams )
       .then( subscriber => {
         res.locals.redirect = '/subscribers';

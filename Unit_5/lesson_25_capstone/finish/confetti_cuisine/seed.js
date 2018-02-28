@@ -2,8 +2,7 @@
 
 const mongoose = require( 'mongoose' ),
   Subscriber = require( './models/subscriber' ),
-  User = require( './models/user' ),
-  Course = require( './models/course' );
+  User = require( './models/user' );
 
 mongoose.connect( 'mongodb://localhost/confetti_cuisine' );
 mongoose.connection;

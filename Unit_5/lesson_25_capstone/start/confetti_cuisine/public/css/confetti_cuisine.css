@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');
 body {
   margin: 0;
-  padding-top: 80px;
+  padding-top: 150px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -78,4 +78,25 @@ input {
 .table {
   margin: 0 auto;
   width: 900px;
+}
+
+.flash {
+  padding: 20px;
+  background-color: lightgray;
+  font-size: 18px;
+}
+
+.error {
+  color: darkred;
+}
+
+.success {
+  color: darkgreen;
+}
+
+.login {
+  width: 220px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
