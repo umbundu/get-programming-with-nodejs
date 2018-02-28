@@ -1,9 +1,9 @@
 'use strict';
 
 const port = 3000,
-  express = require('express'),
+  express = require( 'express' ),
   app = express();
 
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
-});
+app.listen( port, () => {
+  console.log( `Server running on port: ${port}` );
+} );

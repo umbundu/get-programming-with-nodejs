@@ -1,30 +1,30 @@
 'strict mode';
 
 const port = 3000,
-  express = require('express'),
+  express = require( 'express' ),
   app = express(),
-  bodyParser = require('body-parser');
+  bodyParser = require( 'body-parser' );
 
-app.use(bodyParser.urlencoded({
+app.use( bodyParser.urlencoded( {
   extended: false
-}));
-app.use(bodyParser.json());
+} ) );
+app.use( bodyParser.json() );
 
-app.use((req, res, next) => {
-  console.log(`request made to: ${req.url}`);
+app.use( ( req, res, next ) => {
+  console.log( `request made to: ${req.url}` );
   next();
-});
+} );
 
-app.post('/', (req, res) => {
-  console.log(req.body);
-  console.log(req.query);
-  res.send('POST Successful!');
-});
+app.post( '/', ( req, res ) => {
+  console.log( req.body );
+  console.log( req.query );
+  res.send( 'POST Successful!' );
+} );
 
-app.get('/items/:vegetable', (req, res) => {
-  res.send(req.params.vegetable);
-});
+app.get( '/items/:vegetable', ( req, res ) => {
+  res.send( req.params.vegetable );
+} );
 
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
-});
+app.listen( port, () => {
+  console.log( `Server running on port: ${port}` );
+} );
