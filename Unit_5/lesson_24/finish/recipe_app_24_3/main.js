@@ -71,7 +71,6 @@ router.use( ( req, res, next ) => {
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.currentUser = req.user;
   res.locals.flashMessages = req.flash();
-  console.log( res.locals );
   next();
 } );
 
