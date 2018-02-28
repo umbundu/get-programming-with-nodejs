@@ -9,21 +9,21 @@ const routeResponseMap = {
 };
 
 const port = 3000,
-  http = require('http'),
-  httpStatus = require('http-status-codes'),
-  app = http.createServer((req, res) => {
-    res.writeHead(httpStatus.OK, {
+  http = require( 'http' ),
+  httpStatus = require( 'http-status-codes' ),
+  app = http.createServer( ( req, res ) => {
+    res.writeHead( httpStatus.OK, {
       'Content-Type': 'text/html'
-    });
+    } );
 
-    if (routeResponseMap[req.url]) {
-      res.end(routeResponseMap[req.url]);
+    if ( routeResponseMap[ req.url ] ) {
+      res.end( routeResponseMap[ req.url ] );
     } else {
-      setTimeout(() => {
-        res.end('<h1>Welcome!</h1>');
-      }, 2000);
+      setTimeout( () => {
+        res.end( '<h1>Welcome!</h1>' );
+      }, 2000 );
     }
-  });
+  } );
 
-app.listen(port);
-console.log(`The server has started and is listening on port number: ${port}`);
+app.listen( port );
+console.log( `The server has started and is listening on port number: ${port}` );
