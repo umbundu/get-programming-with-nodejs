@@ -5,8 +5,8 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-				<th>Edit</th>
-				<th>Delete</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -20,14 +20,14 @@
           <td>
             <%= course.description %>
           </td>
-					<td>
-					<a href="<%=`courses/${course._id}/edit`%>">
+          <td>
+            <a href="<%=`courses/${course._id}/edit`%>">
 						Edit
 					</a>
-					</td>
-					<td>
-						<a href="<%= `courses/${course._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')" a>Delete</a>
-					</td>
+          </td>
+          <td>
+            <a href="<%= `courses/${course._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')" a>Delete</a>
+          </td>
         </tr>
         <% }); %>
     </tbody>

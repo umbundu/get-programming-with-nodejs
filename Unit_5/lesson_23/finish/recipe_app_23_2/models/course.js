@@ -1,9 +1,9 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-  {Schema} = mongoose;
+const mongoose = require( 'mongoose' ),
+  { Schema } = mongoose;
 
-var courseSchema = new Schema({
+var courseSchema = new Schema( {
   title: {
     type: String,
     required: true,
@@ -16,9 +16,9 @@ var courseSchema = new Schema({
   items: [],
   zipCode: {
     type: Number,
-    min: [10000, 'Zip code too short'],
+    min: [ 10000, 'Zip code too short' ],
     max: 99999
   }
-});
+} );
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = mongoose.model( 'Course', courseSchema );
