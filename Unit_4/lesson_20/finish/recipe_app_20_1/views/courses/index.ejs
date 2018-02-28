@@ -5,7 +5,7 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-				<th>Edit</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -19,11 +19,11 @@
           <td>
             <%= course.description %>
           </td>
-					<td>
-					<a href="<%=`courses/${course._id}/edit`%>">
+          <td>
+            <a href="<%=`courses/${course._id}/edit`%>">
 						Edit
 					</a>
-					</td>
+          </td>
         </tr>
         <% }); %>
     </tbody>

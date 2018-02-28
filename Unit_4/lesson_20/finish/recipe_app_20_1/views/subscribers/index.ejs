@@ -5,7 +5,7 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
-				<th>Edit</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -19,11 +19,11 @@
           <td>
             <%= subscriber.email %>
           </td>
-					<td>
-					<a href="<%=`subscribers/${subscriber._id}/edit`%>">
+          <td>
+            <a href="<%=`subscribers/${subscriber._id}/edit`%>">
 						Edit
 					</a>
-					</td>
+          </td>
         </tr>
         <% }); %>
     </tbody>

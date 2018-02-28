@@ -1,9 +1,9 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-  {Schema} = mongoose;
+const mongoose = require( 'mongoose' ),
+  { Schema } = mongoose;
 
-var userSchema = new Schema({
+var userSchema = new Schema( {
   name: {
     first: {
       type: String,
@@ -22,27 +22,28 @@ var userSchema = new Schema({
   },
   zipCode: {
     type: Number,
-    min: [10000, 'Zip code too short'],
+    min: [ 10000, 'Zip code too short' ],
     max: 99999
   },
   password: {
     type: String,
     required: true
   },
-  courses: [{
+  courses: [ {
     type: Schema.Types.ObjectId,
     ref: 'Course'
-  }],
+  } ],
   subscribedAccount: {
     type: Schema.Types.ObjectId,
     ref: 'Subscriber'
   }
 }, {
   timestamps: true
-});
+} );
 
-userSchema.virtual('fullName').get(function () {
-  return `${this.name.first} ${this.name.last}`;
-});
+userSchema.virtual( 'fullName' )
+  .get( function () {
+    return `${this.name.first} ${this.name.last}`;
+  } );
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model( 'User', userSchema );

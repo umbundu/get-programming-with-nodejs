@@ -3,15 +3,21 @@
 <table class="table">
   <tr>
     <th>Name</th>
-    <td><%= user.fullName %></td>
+    <td>
+      <%= user.fullName %>
+    </td>
   </tr>
   <tr>
     <th>Email</th>
-    <td><%= user.email%></td>
+    <td>
+      <%= user.email%>
+    </td>
   </tr>
   <tr>
     <th>Zip Code</th>
-    <td><%= user.zipCode%></td>
+    <td>
+      <%= user.zipCode%>
+    </td>
   </tr>
   <tr>
     <th>Password</th>
@@ -20,12 +26,12 @@
 </table>
 
 <% if(user.subscribedAccount !== undefined) { %>
-    <h4 class="center"> This user has a
+  <h4 class="center"> This user has a
     <a href="<%=`/subscribers/${user.subscribedAccount}`%>">
     subscribed account </a>.
     </h4>
-<% } %>
+  <% } %>
 
-<div class="center">
-  <a href="/users">View all users</a>
-</div>
+    <div class="center">
+      <a href="/users">View all users</a>
+    </div>

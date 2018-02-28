@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const mongoose = require( 'mongoose' );
 
-var subscriberSchema = new mongoose.Schema({
+var subscriberSchema = new mongoose.Schema( {
   name: {
     type: String,
     required: true
@@ -15,23 +15,25 @@ var subscriberSchema = new mongoose.Schema({
   },
   zipCode: {
     type: Number,
-    min: [10000, 'Zip code too short'],
+    min: [ 10000, 'Zip code too short' ],
     max: 99999
   },
-  courses: [{
+  courses: [ {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Course'
-  }]
-});
+  } ]
+} );
 
 subscriberSchema.methods.getInfo = function () {
   return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
 };
 
 subscriberSchema.methods.findLocalSubscribers = function () {
-  return this.model('Subscriber').find({
-    zipCode: this.zipCode
-  }).exec();
+  return this.model( 'Subscriber' )
+    .find( {
+      zipCode: this.zipCode
+    } )
+    .exec();
 };
 
-module.exports = mongoose.model('Subscriber', subscriberSchema);
+module.exports = mongoose.model( 'Subscriber', subscriberSchema );
