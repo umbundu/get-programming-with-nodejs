@@ -1,54 +1,58 @@
 'use strict';
 
-const express = require('express'),
-  layouts = require('express-ejs-layouts'),
+const express = require( 'express' ),
+  layouts = require( 'express-ejs-layouts' ),
   app = express(),
-  homeController = require('./controllers/homeController'),
-  errorController = require('./controllers/errorController'),
-  bodyParser = require('body-parser'),
-  MongoDB = require('mongodb').MongoClient,
+  homeController = require( './controllers/homeController' ),
+  errorController = require( './controllers/errorController' ),
+  bodyParser = require( 'body-parser' ),
+  MongoDB = require( 'mongodb' )
+  .MongoClient,
   dbURL = 'mongodb://localhost:27017',
   dbName = 'recipe_db';
 
-MongoDB.connect(dbURL, (error, client) => {
-  if (error) throw error;
-  let db = client.db(dbName);
-  db.collection('contacts').find().toArray((error, data) => {
-    if (error) throw error;
-    console.log(data);
-  });
+MongoDB.connect( dbURL, ( error, client ) => {
+  if ( error ) throw error;
+  let db = client.db( dbName );
+  db.collection( 'contacts' )
+    .find()
+    .toArray( ( error, data ) => {
+      if ( error ) throw error;
+      console.log( data );
+    } );
 
-  db.collection('contacts').insert({
-    name: 'Freddie Mercury',
-    email: 'fred@queen.com'
-  }, (error, db) => {
-    if (error) throw error;
-    console.log(db);
-  });
-});
+  db.collection( 'contacts' )
+    .insert( {
+      name: 'Freddie Mercury',
+      email: 'fred@queen.com'
+    }, ( error, db ) => {
+      if ( error ) throw error;
+      console.log( db );
+    } );
+} );
 
-app.set('port', process.env.PORT || 3000);
+app.set( 'port', process.env.PORT || 3000 );
 
-app.set('view engine', 'ejs');
-app.use(layouts);
-app.use(express.static('public'));
+app.set( 'view engine', 'ejs' );
+app.use( layouts );
+app.use( express.static( 'public' ) );
 
-app.use(bodyParser.urlencoded({
+app.use( bodyParser.urlencoded( {
   extended: false
-}));
-app.use(bodyParser.json());
+} ) );
+app.use( bodyParser.json() );
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.get( '/', ( req, res ) => {
+  res.render( 'index' );
+} );
 
-app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
-app.post('/contact', homeController.postedContactForm);
+app.get( '/courses', homeController.showCourses );
+app.get( '/contact', homeController.showSignUp );
+app.post( '/contact', homeController.postedContactForm );
 
-app.use(errorController.pageNotFoundError);
-app.use(errorController.internalServerError);
+app.use( errorController.pageNotFoundError );
+app.use( errorController.internalServerError );
 
-app.listen(app.get('port'), () => {
-  console.log(`Server running at http://localhost:${app.get('port')}`);
-});
+app.listen( app.get( 'port' ), () => {
+  console.log( `Server running at http://localhost:${app.get('port')}` );
+} );

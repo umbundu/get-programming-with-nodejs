@@ -1,44 +1,44 @@
 'use strict';
 
-const express = require('express'),
-  layouts = require('express-ejs-layouts'),
+const express = require( 'express' ),
+  layouts = require( 'express-ejs-layouts' ),
   app = express(),
 
-  homeController = require('./controllers/homeController'),
-  errorController = require('./controllers/errorController'),
+  homeController = require( './controllers/homeController' ),
+  errorController = require( './controllers/errorController' ),
 
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose');
+  bodyParser = require( 'body-parser' ),
+  mongoose = require( 'mongoose' );
 
-mongoose.connect('mongodb://localhost/recipe_db');
+mongoose.connect( 'mongodb://localhost/recipe_db' );
 var db = mongoose.connection;
 
-db.once('open', () => {
-  console.log('Successfully connected to MongoDB using Mongoose!');
-});
+db.once( 'open', () => {
+  console.log( 'Successfully connected to MongoDB using Mongoose!' );
+} );
 
-app.set('port', process.env.PORT || 3000);
+app.set( 'port', process.env.PORT || 3000 );
 
-app.set('view engine', 'ejs');
-app.use(layouts);
-app.use(express.static('public'));
+app.set( 'view engine', 'ejs' );
+app.use( layouts );
+app.use( express.static( 'public' ) );
 
-app.use(bodyParser.urlencoded({
+app.use( bodyParser.urlencoded( {
   extended: false
-}));
-app.use(bodyParser.json());
+} ) );
+app.use( bodyParser.json() );
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.get( '/', ( req, res ) => {
+  res.render( 'index' );
+} );
 
-app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
-app.post('/contact', homeController.postedContactForm);
+app.get( '/courses', homeController.showCourses );
+app.get( '/contact', homeController.showSignUp );
+app.post( '/contact', homeController.postedContactForm );
 
-app.use(errorController.pageNotFoundError);
-app.use(errorController.internalServerError);
+app.use( errorController.pageNotFoundError );
+app.use( errorController.internalServerError );
 
-app.listen(app.get('port'), () => {
-  console.log(`Server running at http://localhost:${app.get('port')}`);
-});
+app.listen( app.get( 'port' ), () => {
+  console.log( `Server running at http://localhost:${app.get('port')}` );
+} );
