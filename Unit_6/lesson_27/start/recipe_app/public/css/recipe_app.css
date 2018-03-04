@@ -111,3 +111,14 @@ input {
   background-color: rgb(102, 237, 244);
   margin-bottom: 20px;
 }
+
+.join-button {
+  position: absolute;
+  right: 25px;
+}
+
+.joined-button {
+  position: absolute;
+  right: 25px;
+  background-color: green;
+}
