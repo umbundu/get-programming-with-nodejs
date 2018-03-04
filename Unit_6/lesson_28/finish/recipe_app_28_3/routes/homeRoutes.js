@@ -1,12 +1,9 @@
 'use strict';
 
-const router = require('express').Router(),
-homeController = require('../controllers/homeController');
+const router = require( 'express' ).Router(),
+  homeController = require( '../controllers/homeController' );
 
-router.get('/', homeController.index);
-router.get('/contact', homeController.showSignUp );
-router.post('/sign-up',homeController.postedSignUpForm );
-router.post('/contact', homeController.postedContactForm);
+router.get( '/', homeController.index );
 
 
 module.exports = router;

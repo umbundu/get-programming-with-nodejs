@@ -123,16 +123,24 @@ module.exports = {
       data: res.locals
     } );
   },
-  errorJSON: ( error, req, res, next ) => {
-    if ( error ) res.json( {
-      status: 500,
-      message: error.message
-    } );
-    res.json( {
-      status: 200,
-      message: 'Unknown Error.'
-    } );
-  },
+
+	errorJSON: ( error, req, res, next ) => {
+    let errorObject;
+
+    if ( error ) {
+      errorObject = {
+        status: 500,
+        message: error.message
+      };
+    } else {
+      errorObject = {
+        status: 200,
+        message: 'Unknown Error.'
+      };
+    }
+    res.json( errorObject );
+
+  },,
 
   filterUserCourses: ( req, res, next ) => {
     let currentUser = res.locals.currentUser;
@@ -168,7 +176,7 @@ module.exports = {
           next( error );
         } );
     } else {
-      throw new Error( 'User must log in.' );
+      next (new Error( 'User must log in.' ));
     }
   }
 };

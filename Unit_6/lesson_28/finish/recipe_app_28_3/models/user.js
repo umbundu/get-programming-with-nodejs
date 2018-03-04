@@ -1,13 +1,12 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-Schema = require('mongoose').Schema,
-Subscriber = require('./subscriber'),
-bcrypt = require('bcrypt'),
-passportLocalMongoose = require('passport-local-mongoose'),
-randToken = require('rand-token');
+const mongoose = require( 'mongoose' ),
+  { Schema } = mongoose,
+  Subscriber = require( './subscriber' ),
+  passportLocalMongoose = require( 'passport-local-mongoose' ),
+  randToken = require( 'rand-token' );
 
-var userSchema = new Schema({
+var userSchema = new Schema( {
   name: {
     first: {
       type: String,
@@ -24,48 +23,58 @@ var userSchema = new Schema({
     lowercase: true,
     unique: true
   },
-  zipCode:  {
+  zipCode: {
     type: Number,
-    min: [1000, 'Zip code too short'],
+    min: [ 10000, 'Zip code too short' ],
     max: 99999
   },
-  subscribedAccount: {type: Schema.Types.ObjectId, ref: 'Subscriber'},
-  courses: [{type: Schema.Types.ObjectId, ref: 'Course'}],
-  // apiToken: {
-  //   type: String,
-  // }
-},
-{
+  courses: [ {
+    type: Schema.Types.ObjectId,
+    ref: 'Course'
+  } ],
+  subscribedAccount: {
+    type: Schema.Types.ObjectId,
+    ref: 'Subscriber'
+  },
+  apiToken: {
+    type: String
+  }
+}, {
   timestamps: true
-});
+} );
 
-userSchema.virtual('fullName').get(function(){
-  return `${this.name.first} ${this.name.last}`;
-});
+userSchema.virtual( 'fullName' )
+  .get( function () {
+    return `${this.name.first} ${this.name.last}`;
+  } );
 
-userSchema.pre('save', function (next) {
-  var user = this;
-  if (user.subscribedAccount === undefined) {
-    Subscriber.findOne({email: user.email})
-    .then(subscriber => {
-      user.subscribedAccount = subscriber;
-      next();
-    })
-    .catch(e => {
-      console.log(`Error in connecting subscriber: ${e.message}`);
-      next(e);
-    });
+userSchema.pre( 'save', function ( next ) {
+  let user = this;
+  if ( user.subscribedAccount === undefined ) {
+    Subscriber.findOne( {
+      email: user.email
+    } )
+      .then( subscriber => {
+        user.subscribedAccount = subscriber;
+        next();
+      } )
+      .catch( error => {
+        console.log( `Error in connecting subscriber: ${error.message}` );
+        next( error );
+      } );
   } else {
     next();
   }
-});
+} );
 
-// userSchema.pre('save', function (next) {
-//   let user = this;
-//   if (!user.apiToken) user.apiToken = randToken.generate(16);
-//   next();
-// });
+userSchema.plugin( passportLocalMongoose, {
+  usernameField: 'email'
+} );
 
-userSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
+userSchema.pre( 'save', function ( next ) {
+  let user = this;
+  if ( !user.apiToken ) user.apiToken = randToken.generate( 16 );
+  next();
+} );
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model( 'User', userSchema );
