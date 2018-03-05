@@ -1,57 +1,85 @@
 'use strict';
 
-$(document).ready(()=>{
-  $("#modal-button").click(()=>{
-    $(".modal-body").html('');
-    $.get("/api/courses", (results) => {
-      results['data']['courses'].forEach((course) => {
-        $(".modal-body").append(`<div>
-          <span>${course.title}</span>
-          <div>${course.description}</div>
-          <button class="join-button btn btn-info btn-sm" data-id="${course._id}">Join</button>
-          </div>`);
-          addJoinButtonListener();
-        });
-      })
-    });
+$( document ).ready( () => {
+  const socket = io();
 
-    function addJoinButtonListener() {
-      $(".join-button").click((e)=>{
-        let button = $(e.target),
-        courseId = button.data('id');
-        $.get(`/api/courses/${courseId}/join`, (data) => {
-          if (data.success) {
-            button.text('Joined');
-            button.css({'backgroundColor': 'green'});
-            button.removeClass('join-button');
-          } else {
-            button.text('Try again');
-          }
-        })
-      });
-    }
+  let apiToken = $( '#apiToken' ).data( 'token' );
+  $( '#modal-button' ).click( () => {
+    $( '.modal-body' ).html( '' );
+    $.get( `/api/courses?apiToken=${apiToken}`, ( results = {} ) => {
 
-    const socket = io();
+      let data = results.data;
+      if ( !data || !data.courses ) return;
 
-    $('#chatForm').submit(() =>{
-      let text = $('#chat_input').val(),
-      userName = $('#chat_user_name').val(),
-      userId = $('#chat_user_id').val();
-      socket.emit('message', {content: text, userName: userName, userId: userId});
-      $('#chat_input').val('');
-      return false;
-    });
+      data.courses.forEach( ( course ) => {
+        $( '.modal-body' ).append(
+          `<div>
+							<span class='course-title'>
+								${course.title}
+							</span>
+							<button class='${course.joined ? 'joined-button' : 'join-button' } btn btn-info btn-sm' data-id='${course._id}'>
+								${course.joined ? 'Joined' : 'Join'}
+							</button>
+							<div class='course-description'>
+								${course.description}
+							</div>
+	    	 	 </div>`
+        );
+      } );
+    } )
+      .then( () => {
+        addJoinButtonListener();
+      } );
+  } );
 
-    socket.on('message', (message) => {
-      displayMessage(message);
-    });
+  $( '#chatForm' ).submit( () => {
+    let text = $( '#chat-input' ).val(),
+      userName = $( '#chat-user-name' ).val(),
+      userId = $( '#chat-user-id' ).val();
+    socket.emit( 'message', {
+      content: text,
+      userName: userName,
+      userId: userId
+    } );
 
-    function displayMessage(message){
-      $('#chat').prepend($('<li>').html(`<strong class='message ${getCurrentUserClass(message.user)}'> ${message.userName}</strong>: ${message.content}`));
-    }
+    $( '#chat-input' ).val( '' );
+    return false;
+  } );
 
-    function getCurrentUserClass(id) {
-      let userId = $('#chat_user_id').val();
-      return userId === id ? "currentUser": "";
-    }
-  });
+  socket.on( 'message', ( message ) => {
+    displayMessage( message );
+  } );
+} );
+
+
+let addJoinButtonListener = () => {
+  let apiToken = $( '#apiToken' ).data( 'token' );
+  $( '.join-button' ).click( ( event ) => {
+    let $button = $( event.target ),
+      courseId = $button.data( 'id' );
+    $.get( `/api/courses/${courseId}/join?apiToken=${apiToken}`, ( results = {} ) => {
+      let data = results.data;
+      if ( data && data.success ) {
+        $button
+          .text( 'Joined' )
+          .addClass( 'joined-button' )
+          .removeClass( 'join-button' );
+      } else {
+        $button.text( 'Try again' );
+      }
+    } );
+  } );
+};
+
+let displayMessage = (message) => {
+	$('#chat').prepend($('<li>').html(`
+		<strong class='message ${getCurrentUserClass( message.user )}'>
+			${message.userName}
+		</strong>: ${message.content}
+	`));
+};
+
+let getCurrentUserClass = (id) => {
+  let userId = $('#chat-user-id').val();
+  return userId === id ? 'current-user': '';
+};
