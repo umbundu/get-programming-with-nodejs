@@ -146,6 +146,9 @@ li {
 
 .chat-icon {
   font-size: 35px;
+  left: 10px;
+  top: 5px;
+  position: absolute;
 }
 
 .current-user {
