@@ -1,11 +1,9 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-  {
-    Schema
-  } = require('mongoose');
+const mongoose = require( 'mongoose' ),
+  { Schema } = require( 'mongoose' );
 
-var messageSchema = new Schema({
+var messageSchema = new Schema( {
   content: {
     type: String,
     required: true
@@ -19,8 +17,6 @@ var messageSchema = new Schema({
     ref: 'User',
     required: true
   }
-}, {
-  timestamps: true
-});
+}, { timestamps: true } );
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = mongoose.model( 'Message', messageSchema );

@@ -1,72 +1,96 @@
 'use strict';
 
-var socket = io();
+$( document ).ready( () => {
+  $( '#modal-button' ).click( () => {
+    $( '.modal-body' ).html( '' );
+    $.get( `/api/courses`, ( results = {} ) => {
 
-$(document).ready(()=>{
-  $("#modal-button").click(()=>{
-    $(".modal-body").html('');
+      let data = results.data;
+      if ( !data || !data.courses ) return;
 
-    $.get("/api/courses", (results) => {
-      if (results['status'] === 500) return;
-      let data = results['data'];
-      data.forEach((course) => {
-        $(".modal-body").append(`<div>
-          <span>${course.title}</span>
-          <span>$${course.cost}</span>
-          <div>${course.description}</div>
-          <button class="join-button btn btn-info btn-sm" data-id="${course._id}">Join</button>
-          </div>`);
-        });
+      data.courses.forEach( ( course ) => {
+        $( '.modal-body' ).append(
+          `<div>
+						<span class="course-cost">$${course.cost}</span>
+						<span class='course-title'>
+							${course.title}
+						</span>
+						<button class='${course.joined ? 'joined-button' : 'join-button' } btn btn-info btn-sm' data-id='${course._id}'>
+							${course.joined ? 'Joined' : 'Join'}
+						</button>
+						<div class='course-description'>
+							${course.description}
+						</div>
+    	 	 </div>`
+        );
+      } );
+    } )
+      .then( () => {
         addJoinButtonListener();
-      });
-    });
+      } );
+  } );
 
-    function addJoinButtonListener() {
-      $(".join-button").click((e)=>{
-        let button = $(e.target),
-        courseId = button.data('id');
-        $.get(`/api/courses/${courseId}/join`, (data) => {
-          if (data.success) {
-            button.text('Joined');
-            button.css({'backgroundColor': 'green'});
-            button.removeClass('join-button');
-          } else {
-            button.text('Try again');
-          }
-        })
-      });
+const socket = io();
+
+  $( '#chatForm' ).submit( () => {
+    let text = $( '#chat-input' ).val(),
+      userName = $( '#chat-user-name' ).val(),
+      userId = $( '#chat-user-id' ).val();
+    socket.emit( 'message', {
+      content: text,
+      userName: userName,
+      userId: userId
+    } );
+    $( '#chat-input' ).val( '' );
+    return false;
+  } );
+
+  socket.on( 'message', ( message ) => {
+    displayMessage( message );
+    for ( let i = 0; i < 2; i++ ) {
+      $( '.chat-icon' ).fadeOut( 200 ).fadeIn( 200 );
     }
+  } );
 
-    $('#chatForm').submit(() =>{
-      let text = $('#chat_input').val(),
-      userName = $('#chat_user_name').val(),
-      userId = $('#chat_user_id').val();
-      socket.emit('message', {content: text, userName: userName, userId: userId});
-      $('#chat_input').val('');
-      return false;
-    });
+  socket.on( 'load all messages', ( data ) => {
+    data.forEach( message => {
+      displayMessage( message );
+    } );
+  } );
+} );
 
-    socket.on('message', (message) => {
-      displayMessage(message);
-      for(let i = 0; i< 2; i++){
-        $('.chat-icon').fadeOut(200).fadeIn(200);
+
+let addJoinButtonListener = () => {
+  $( '.join-button' ).click( ( event ) => {
+    let $button = $( event.target ),
+      courseId = $button.data( 'id' );
+    $.get( `/api/courses/${courseId}/join`, ( results = {} ) => {
+      let data = results.data;
+      if ( data && data.success ) {
+        $button
+          .text( 'Joined' )
+          .addClass( 'joined-button' )
+          .removeClass( 'join-button' );
+      } else {
+        $button.text( 'Try again' );
       }
-    });
+    } );
+  } );
+};
 
-    socket.on('load all messages', (data) => {
-      data.forEach( message => {
-        displayMessage(message);
-      })
-    });
+let displayMessage = ( message ) => {
+    $( '#chat' ).prepend( $( '<li>' ).html( `
+			<div class='message ${getCurrentUserClass(message.user)}'>
+				<span class="user-name">
+					${message.userName}:
+				</span>
+				${message.content}
+				</div>
+		` ) );
+};
 
-    function displayMessage(message){
-      $('#chat').prepend($('<li>').html(`<div class='message ${getCurrentUserClass(message.user)}'> ${message.content} </div>`));
-    }
-
-    function getCurrentUserClass(id) {
-      let userId = $('#chat_user_id').val();
-      if (userId === id) return "currentUser";
-      else return "";
-    }
-
-  });
+let getCurrentUserClass = ( id ) => {
+  let userId = $( '#chat-user-id' ).val();
+  if ( userId === id ) return 'current-user';
+  else return '';
+};
