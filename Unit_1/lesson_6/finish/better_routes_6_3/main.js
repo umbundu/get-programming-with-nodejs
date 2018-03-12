@@ -10,6 +10,14 @@ const port = 3000,
   },
   htmlContentType = {
     'Content-Type': 'text/html'
+  },
+  customReadFile = ( file, res ) => {
+    fs.readFile( `./${file}`, ( errors, data ) => {
+      if ( errors ) {
+        console.log( 'Error reading the file...' );
+      }
+      res.end( data );
+    } );
   };
 
 router.get( '/', ( req, res ) => {
@@ -26,15 +34,6 @@ router.post( '/', ( req, res ) => {
   res.writeHead( httpStatusCodes.OK, plainTextContentType );
   res.end( 'POSTED' );
 } );
-
-function customReadFile( file, res ) {
-  fs.readFile( `./${file}`, ( errors, data ) => {
-    if ( errors ) {
-      console.log( 'Error reading the file...' );
-    }
-    res.end( data );
-  } );
-}
 
 http.createServer( router.handle )
   .listen( 3000 );
