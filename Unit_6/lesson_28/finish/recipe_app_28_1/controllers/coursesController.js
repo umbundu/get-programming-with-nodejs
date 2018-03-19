@@ -1,6 +1,7 @@
 'use strict';
 
 const Course = require( '../models/course' ),
+  httpStatus = require('http-status-codes'),
   User = require( '../models/user' ),
   getCourseParams = ( body ) => {
     return {
@@ -129,12 +130,12 @@ module.exports = {
 
     if ( error ) {
       errorObject = {
-        status: 500,
+        status: httpStatus.INTERNAL_SERVER_ERROR,
         message: error.message
       };
     } else {
       errorObject = {
-        status: 200,
+        status: httpStatus.OK,
         message: 'Unknown Error.'
       };
     }

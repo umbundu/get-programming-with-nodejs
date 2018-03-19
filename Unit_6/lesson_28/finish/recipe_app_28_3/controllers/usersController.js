@@ -2,6 +2,7 @@
 
 const User = require( '../models/user' ),
   passport = require( 'passport' ),
+  httpStatus = require('http-status-codes'),
   jsonWebToken = require( 'jsonwebtoken' ),
   getUserParams = ( body ) => {
     return {
@@ -219,7 +220,7 @@ module.exports = {
               if ( user ) {
                 next();
               } else {
-                res.status( 403 )
+                res.status( httpStatus.FORBIDDEN  )
                   .json( {
                     error: true,
                     message: 'No User account found.'
@@ -227,7 +228,7 @@ module.exports = {
               }
             } );
         } else {
-          res.status( 401 )
+          res.status( httpStatus.UNAUTHORIZED )
             .json( {
               error: true,
               message: 'Cannot verify API token.'
@@ -236,7 +237,7 @@ module.exports = {
         }
       } );
     } else {
-      res.status( 401 )
+      res.status( httpStatus.UNAUTHORIZED )
         .json( {
           error: true,
           message: 'Provide Token'
